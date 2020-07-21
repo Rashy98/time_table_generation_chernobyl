@@ -2,7 +2,7 @@
   "name": "time_table_generation",
   "version": "1.0.0",
   "description": "time table generation",
-  "main": "main.js",
+  "main": "FrontEnd/main.js",
   "scripts": {
     "start": "electron ."
   },

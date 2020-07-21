@@ -1,18 +1,43 @@
-const electron = require('electron')
-const { app, BrowserWindow } = require('electron')
+const electron = require('electron');
+const url = require('url');
+const path = require('path');
 
-function createWindow () {
-    // Create the browser window.
-    const win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true
-        }
+const {app, BrowserWindow,Menu} = electron;
+
+let mainWindow;
+let addWindow;
+
+//Listen for app to be ready
+app.on('ready',function (){
+    mainWindow = new BrowserWindow(({}));
+
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname,'index.html'),
+        protocol:'file:',
+        slashes:true
+    }));
+    mainWindow.on('closed',function () {
+        app.quit();
     })
 
-    // and load the index.html of the app.
-    win.loadFile('index.html')
-}
+    //Build menu from template
+    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
 
-app.whenReady().then(createWindow)
+    //Insert menu
+    Menu.setApplicationMenu(mainMenu);
+});
+
+
+//create menu template
+
+const mainMenuTemplate = [
+    {
+        label:'File',
+        label: 'Quit',
+                accelerator:process.platform == 'darwin' ? 'Command+Q':'Ctrl+Q',
+                click(){
+                    app.quit();
+                }
+
+    }
+];
