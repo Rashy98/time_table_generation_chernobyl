@@ -1,13 +1,37 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/stats.css">
+    <title>Title</title>
 </head>
 <body>
+<script>
+    $(document).ready(function(){
+        $("#statMain").load("Statistics/StudentStats.html");
+        $("#lecStats").click(function(){
+            $("#statMain").load("Statistics/LecturerStats.html");
+        });
+        $("#studStats").click(function(){
+            $("#statMain").load("Statistics/StudentStats.html");
+        });
+        $("#subStats").click(function(){
+            $("#statMain").load("Statistics/SubjectStats.html");
+        });
 
-<div class="navbar">
-    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
-    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+    });
+</script>
+
+<div id="statnav" >
+    <div class="navbar">
+        <a href="#" id ="lecStats">Lecturers</a>
+        <a href="#" id="studStats">Students</a>
+        <a href="#" id="subStats">Subjects</a>
+    </div>
+</div>
+<div id="statMain" >
+    <script>$("#statMain").load("Statistics/StudentStats.html");</script>
 </div>
 </body>
 </html>

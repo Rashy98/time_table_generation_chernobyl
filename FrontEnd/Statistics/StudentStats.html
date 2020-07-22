@@ -2,9 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/stats.css">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div>
+    <h3>Student Statistics</h3>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <canvas id="pie-chart" class="diagram"></canvas>
+            </div>
+            <div class="col">
+                <canvas id="pie-chart2" class="diagram"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script>
+    new Chart(document.getElementById("pie-chart"), {
+        type: 'pie',
+        data: {
+            labels: ["Computing", "Business", "Engineering", "Humanities & Sciences", "Architecture"],
+            datasets: [{
+                label: "Population (millions)",
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                data: [7200,5267,734,784,433]
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Students per faculty'
+            }
+        }
+    });
+    new Chart(document.getElementById("pie-chart2"), {
+        type: 'pie',
+        data: {
+            labels: ["1st year", "2nd year", "3rd year", "4th year", "Graduate"],
+            datasets: [{
+                label: "Population (millions)",
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                data: [4000,3621,3500,3250,1700]
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Students per year'
+            }
+        }
+    });
+
+</script>
+
+</div>
 </body>
 </html>

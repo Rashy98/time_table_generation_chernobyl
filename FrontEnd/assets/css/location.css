@@ -18,11 +18,20 @@ h5{
     color: mediumslateblue;
 }
 
+.form2{
+    margin-left: 2em;
+    font-family: Margarine;
+    font-size: 40px;
+}
+
 @media screen and (min-height: 750px) and  (min-width: 750px){
     .form{
         width: 50%;
         padding: 60px 60px 60px 60px;
         margin-left: 25%;
         margin-top: 5%;
+    }
+    .form2{
+        margin-left: 23%;
     }
 }

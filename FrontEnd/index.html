@@ -17,7 +17,10 @@
                 $("#main").load("Student/AddingStudentRelatedData.html");
             });
             $("#addLoc").click(function(){
-                $("#main").load("Location/AddLocationRelatedData.html");
+                $("#main").load("Location/LocationMain.html");
+            });
+            $("#stats").click(function(){
+                $("#main").load("Statistics/StatMain.html");
             });
 
         });
@@ -58,7 +61,7 @@
         <a class="nav-link " href="#">Room allocation</a>
     </li>
      <li class="nav-item">
-        <a class="nav-link " href="#">Statistics</a>
+        <a class="nav-link " href="#" id="stats">Statistics</a>
     </li>
     <button>Generate</button>
 </ul>
