@@ -4,11 +4,12 @@
   "description": "Backend of the time table generator desktop app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm install && node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "electron": "^9.1.1",
     "express": "^4.17.1",
     "mongodb": "^3.5.9"
   }

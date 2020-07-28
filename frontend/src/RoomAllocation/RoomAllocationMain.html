@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room Allocation Main</title>
+    <link rel="stylesheet" type="text/css" href="./src/assets/css/location.css">
+    <link rel="stylesheet" type="text/css" href="./src/assets/css/roomAllo.css">
+</head>
+<body>
+
+<script>
+
+   function Function1(){
+       if (document.getElementById("tagOnly").checked){
+           $("#alloMain").load("RoomAllocation/TagOnly.html");
+       }
+       else if (document.getElementById("tagAndSub").checked){
+           $("#alloMain").load("RoomAllocation/Tag&Sub.html");
+       }
+    }
+</script>
+<div class="form">
+    <h5>Select an option to allocate rooms:</h5>
+    <form onchange="Function1()">
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="tagOnly" value="option1">
+        <label class="form-check-label text" for="tagOnly">Tag</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="tagAndSub" value="option2">
+        <label class="form-check-label text" for="tagAndSub">Tag & Subject</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="lecturer" value="option3">
+        <label class="form-check-label text" for="lecturer">Lecturer</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="GroupOrSub" value="option3">
+        <label class="form-check-label text" for="GroupOrSub">Group or Sub group</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="session" value="option3">
+        <label class="form-check-label text" for="session">Session</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Unavailable" value="option3">
+        <label class="form-check-label text" for="Unavailable">Unavailable</label>
+    </div>
+
+    </form>
+    <br/>
+
+<div id="alloMain" >
+
+</div>
+</div>
+</body>
+</html>
