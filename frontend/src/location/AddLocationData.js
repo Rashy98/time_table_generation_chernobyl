@@ -42,9 +42,10 @@ export default class AddLocationData extends Component{
             this.state.Buildings.map(building => {
                 if (building.building === this.state.building) {
                     valid = false;
-                    this.setState({
-                        buildingVal: "This Building already exists",
-                    })
+                    alert("Building already exists")
+                    // this.setState({
+                    //     buildingVal: "This Building already exists",
+                    // })
 
                 }
             })
@@ -107,7 +108,7 @@ export default class AddLocationData extends Component{
                                 <h5>Room</h5>
                                 <label className="sr-only" htmlFor="inlineFormCustomSelectPref">Building</label>
                                 <select className="form-control " id="inlineFormCustomSelectPref"
-                                        // value={this.state.roomBuild}
+                                        value={this.state.roomBuild}
                                         onChange={this.onChangeroomBuilding}
                                 >
                                     <option selected style={{fontSize: "15px;"}}>Choose Building...</option>

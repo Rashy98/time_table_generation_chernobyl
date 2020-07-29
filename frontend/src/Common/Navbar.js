@@ -30,7 +30,7 @@ export default class NavBar extends Component{
                         <a className="nav-link " href="#">Sessions</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link " href="#">Section 3</a>
+                        <a className="nav-link " href="#">Time allocation</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link " href="#" id="roomAl">Room allocation</a>

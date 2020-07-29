@@ -18,4 +18,16 @@
 button{
     background-color: #312450;
     color: lavender;
+    border-radius: 15%;
+}
+
+table{
+    text-align: center;
+}
+
+table th{
+    font-size: 20px;
+}
+table td{
+    font-size: 18px;
 }
