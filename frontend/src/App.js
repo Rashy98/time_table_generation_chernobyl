@@ -16,6 +16,10 @@ import AddWeekendWorkingDays from "./WorkingDays/AddWeekendWorkingDays";
 import ViewWeekdayWorkingDays from "./WorkingDays/ViewWeekdayWorkingDays";
 import ViewWeekendWorkingDays from "./WorkingDays/ViewWeekendWorkingDays";
 
+//Tags
+import AddTag from "./tag/AddTagDetails";
+import ViewTag from "./tag/ViewTag";
+
 
 function App() {
   return (
@@ -37,6 +41,10 @@ function App() {
             <Route path="/AddWeekendWorkingDays" component={AddWeekendWorkingDays}/>
             <Route path="/ViewWeekdayWorkingDays" component={ViewWeekdayWorkingDays}/>
             <Route path="/ViewWeekendWorkingDays" component={ViewWeekendWorkingDays}/>
+
+            {/*TagsAndStudents*/}
+            <Route path="/AddTag" component={AddTag}/>
+            <Route path="/ViewTag" component={ViewTag}/>
         </switch>
       </Router>
   );

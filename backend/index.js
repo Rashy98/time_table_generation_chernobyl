@@ -12,8 +12,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json());
 
 const AddBuilding = require('../backend/routes/buildings');
+const AddTag = require('../backend/routes/tags');
+
 
 app.use('/building', AddBuilding);
+app.use('/tag', AddTag);
 
 
 
