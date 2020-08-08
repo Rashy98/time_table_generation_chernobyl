@@ -14,10 +14,12 @@ app.use(bodyParser.json());
 const AddBuilding = require('../backend/routes/buildings');
 const AddTag = require('../backend/routes/tags');
 
-
+const AddLecturer = require('../backend/routes/lecturer');
+const AddSubject = require('../backend/routes/subject');
 app.use('/building', AddBuilding);
 app.use('/tag', AddTag);
-
+app.use('/lecturer', AddLecturer);
+app.use('/subject', AddSubject);
 
 
 const uri = process.env.ATLAS_URI;
