@@ -1,2 +1,2 @@
-cd frontend && npm run electron-dev &
-cd backend && npm start
+cd frontend && npm run electron-dev
+

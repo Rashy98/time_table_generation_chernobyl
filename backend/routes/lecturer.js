@@ -10,6 +10,13 @@ const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
+router.route('/').get((req, res) => {
+    Lecturer.find()
+        .then(lecturers => res.json(lecturers))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/addLec').post((req, res) => {
     console.log(req.body);
 

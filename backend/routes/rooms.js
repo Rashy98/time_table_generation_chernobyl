@@ -17,6 +17,12 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/:id').get((req, res) => {
+    Room.findById(req.params.id)
+        .then(rooms => res.json(rooms))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/add').post((req, res) => {
     console.log(req.body);
     const building = req.body.building;
@@ -26,6 +32,28 @@ router.route('/add').post((req, res) => {
     const newRoom = new Room({building,room,capacity,type});
     newRoom.save()
         .then(() => res.json('Room added!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/:id').delete((req, res) => {
+    Room.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Room deleted.'))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+router.route('/update/:id').post((req, res) => {
+    Room.findById(req.params.id)
+        .then(room => {
+            room.building = req.body.building;
+            room.room = req.body.room;
+            room.capacity = req.body.capacity;
+            room.type = req.body.type;
+
+            room.save()
+                .then(() => res.json('Room updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
         .catch(err => res.status(400).json('Error: ' + err));
 });
 

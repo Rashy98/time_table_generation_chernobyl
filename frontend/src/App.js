@@ -8,6 +8,7 @@ import ViewLocation from "./location/ViewLocation";
 import ViewRoomDetails from "./location/ViewRoomDetail";
 import SubjectStat from "./Statistics/SubjectStat";
 import LecturerStats from "./Statistics/LectureStats";
+import EditRoom from "./location/EditRoom";
 
 //Lecturer
 import LecturerHomePage from "./Lecturer/LecturerHomePage";
@@ -36,13 +37,17 @@ function App() {
         <NavBar/>
         <switch>
 
-          {/*Admin*/}
-          <Route path="/AddLocation" exact component={AddLocationData} />
-          <Route path="/StuStats" component={StudentStats}/>
-          <Route path="/LecturerStats" component={LecturerStats}/>
-          <Route path="/SubjectStats" component={SubjectStat}/>
-          <Route path="/ViewLocation" component={ViewLocation}/>
-          <Route path="/ViewRoom" component={ViewRoomDetails}/>
+            {/*Location*/}
+            <Route path="/AddLocation" exact component={AddLocationData} />
+            <Route path="/ViewLocation" component={ViewLocation}/>
+            <Route path="/ViewRoom" component={ViewRoomDetails}/>
+            <Route path="/UpdateRoom/:id" component={EditRoom}/>
+
+            {/*Statistics*/}
+            <Route path="/StuStats" component={StudentStats}/>
+            <Route path="/LecturerStats" component={LecturerStats}/>
+            <Route path="/SubjectStats" component={SubjectStat}/>
+
 
             {/*Lecturers & Subjects*/}
           <Route path="/LecHome" component={LecturerHomePage}/>
