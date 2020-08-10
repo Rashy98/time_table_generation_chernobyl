@@ -18,7 +18,7 @@ export default class NavBar extends Component{
                         <a className="nav-link" href="/WorkingDaysMain" id="WorkingDaysMain">Working days</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" data-section="addStu" id="addStu" href="#addStu">Student Details</a>
+                        <a className="nav-link"  id="addStu" href="/AddStudent">Student Details</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link " href="/AddTag">Tags</a>
