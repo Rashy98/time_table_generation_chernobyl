@@ -10,8 +10,14 @@ const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+router.route('/viewSub').get((req, res) => {
+    Subject.find()
+        .then(managers => res.json(managers))
+        .catch(err => res.status(400).json({success: false, err: err}));
+});
+
 router.route('/addSub').post((req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
     const NewSubject = new Subject({
 
@@ -28,7 +34,7 @@ router.route('/addSub').post((req, res) => {
 
     NewSubject.save()
         .then(() => res.json('Subject Details added!'))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => res.status(400).json({success: false, err: err}));
 });
 
 router.route('/getSub').get((req, res) =>{
@@ -47,7 +53,8 @@ router.route('/getSub').get((req, res) =>{
 router.route('/:id').delete((req, res) => {
     Subject.findByIdAndDelete(req.params.id)
         .then(() => res.json('Subject Details deleted.'))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => res.status(400).json({success: false, err: err}));
 });
+
 
 module.exports = router;

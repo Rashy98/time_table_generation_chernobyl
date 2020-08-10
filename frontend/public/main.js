@@ -17,6 +17,8 @@ app.on('ready',function (){
         webPreferences: { nodeIntegration: true }
     }));
 
+    //mainWindow.webContents.openDevTools();
+
     // mainWindow.loadURL('http://localhost:3000')
     // mainWindow.loadURL('http://localhost:3000');
     // mainWindow.loadURL(url.format({

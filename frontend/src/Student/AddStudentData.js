@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import location from "../assets/css/location.css"
 import stat from "../assets/css/stats.css";
-import TagNav from "./tagNav.js";
+//import TagNav from "./tagNav.js";
 import axios from 'axios';
 
 
@@ -75,7 +75,7 @@ export default class AddTagDetails extends Component{
         const tags = this.state.Tags;
         return (
             <div className="main">
-                <TagNav/>
+                {/*<TagNav/>*/}
                 <h3> Add Tag Details</h3>
                 <div className="form">
                     <form className="form-inline" >

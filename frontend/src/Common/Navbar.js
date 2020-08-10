@@ -38,6 +38,7 @@ export default class NavBar extends Component{
                     <li className="nav-item">
                         <a className="nav-link " href="/StuStats" id="stats">Statistics</a>
                     </li>
+                    <br/>
                     <button>Generate</button>
                 </ul>
             </div>

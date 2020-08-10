@@ -1,46 +1,106 @@
 import React, {Component} from "react";
 import SubNav from "./Common/SubNav";
+import {Container, Spinner, Table} from "react-bootstrap";
+import {Link} from "react-router-dom";
+import axios from "axios";
 
-export default class ViewSubjectDetails extends Component {
+const Subject = props => (
+    <tr>
+        <td style={{fontSize: '15px'}}>{props.subject.offYear}</td>
+        <td style={{fontSize: '15px'}}>{props.subject.offSem}</td>
+        <td style={{fontSize: '15px'}}>{props.subject.subject}</td>
+        <td style={{fontSize: '15px'}}>{props.subject.subjectCode}</td>
+        <td style={{fontSize: '15px'}}>{props.subject.lecHr}</td>
+        <td style={{fontSize: '15px'}}>{props.subject.tutHr}</td>
+        <td style={{fontSize: '15px'}}>{props.subject.labHr}</td>
+        <td style={{fontSize: '15px'}}>{props.subject.eveHr}</td>
+        <td style={{fontSize: '15px'}}>
+            <button className="btn my-1" >
+                <Link style={{color:"lavender"}}>
+                Edit
+                </Link>
+            </button>
+            &nbsp;
+            <button className="btn my-1">
+                <a href="#" style={{color:"lavender"}}
+                    onClick={() => {props.RemoveSubject(props.subject._id)}}>
+                    Delete
+                </a>
+            </button>
+        </td>
+    </tr>
+)
+
+class ViewSubjectDetails extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.RemoveSubject = this.RemoveSubject.bind(this);
+
+        this.state = {
+            subjectDetails: [],
+            loading: true,
+        };
+    }
+
+    componentDidMount() {
+        axios.get('/subject/viewSub')
+            .then(res => {
+                this.setState({
+                    subjectDetails:res.data,
+                    loading:false
+                })
+            });
+    }
+
+    RemoveSubject(id) {
+        axios.delete('/subject/' + id)
+            .then(res => console.log(res.data));
+
+        this.setState({
+            subjectDetails: this.state.subjectDetails.filter(el => el._id != id)
+        })
+    }
+
+    SubjectList() {
+        return this.state.subjectDetails.map(subject => {
+            return <Subject subject={subject} RemoveSubject={this.RemoveSubject}
+                             key={subject._id}/>;
+        })
+    }
 
     render() {
         return(
-            <div className="main">
-                <SubNav/>
-                <div className="form" >
-                    <h3> Subject Details </h3><br/>
-                    <form>
-                        <table>
-                            <tr>
-                                <th style={{fontSize: '15px'}}>Offered Year</th>
-                                <th style={{fontSize: '15px'}}>Offered Semester</th>
-                                <th style={{fontSize: '15px'}}>Subject Name</th>
-                                <th style={{fontSize: '15px'}}>Subject Code</th>
-                                <th style={{fontSize: '15px'}}>Lecture hours</th>
-                                <th style={{fontSize: '15px'}}>Tutorial hours</th>
-                                <th style={{fontSize: '15px'}}>Lab hours</th>
-                                <th style={{fontSize: '15px'}}>Evaluation hours</th>
-                                <th style={{fontSize: '15px'}}>Edit Or Delete</th>
-                            </tr>
-                            <tr>
-                                <td style={{fontSize: '15px'}}>2nd</td>
-                                <td style={{fontSize: '15px'}}>2nd</td>
-                                <td style={{fontSize: '15px'}}>OOP</td>
-                                <td style={{fontSize: '15px'}}>IT2020</td>
-                                <td style={{fontSize: '15px'}}>03</td>
-                                <td style={{fontSize: '15px'}}>01</td>
-                                <td style={{fontSize: '15px'}}>02</td>
-                                <td style={{fontSize: '15px'}}>02</td>
-                                <td>
-                                    <button type="submit" className="btn my-1" style={{backgroundColor: "#312450", color: "white", fontSize: '15px'}}>Edit</button><br/>
-                                    <button type="submit" className="btn my-1" style={{backgroundColor: "#312450", color: "white", fontSize: '15px'}}>Delete</button>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </form>
-                </div>
+            <div id="page-container" className="main">
+                <Container>
+                    <div className="form" >
+                        <SubNav/><br/>
+                        <h3> Subject Details </h3><br/>
+                        <Table responsive style={{bgColor:"lavender"}}>
+                            <thead className="thead-light">
+                            {this.state.loading ? <center><Spinner animation="border" /></center> :
+                                <tr>
+                                    <th style={{fontSize: '15px'}}>Offered Year</th>
+                                    <th style={{fontSize: '15px'}}>Offered Semester</th>
+                                    <th style={{fontSize: '15px'}}>Subject Name</th>
+                                    <th style={{fontSize: '15px'}}>Subject Code</th>
+                                    <th style={{fontSize: '15px'}}>Lecture hours</th>
+                                    <th style={{fontSize: '15px'}}>Tutorial hours</th>
+                                    <th style={{fontSize: '15px'}}>Lab hours</th>
+                                    <th style={{fontSize: '15px'}}>Evaluation hours</th>
+                                    <th style={{fontSize: '15px'}}>Edit Or Delete</th>
+                                </tr>
+                            }
+                            </thead>
+                            <tbody>
+                            {this.SubjectList()}
+                            </tbody>
+                        </Table>
+                    </div>
+                </Container>
             </div>
         );
     }
 }
+export default ViewSubjectDetails;

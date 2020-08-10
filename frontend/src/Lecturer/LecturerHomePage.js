@@ -2,44 +2,55 @@ import React, {Component} from "react";
 import LecNav from "./Common/LecNav";
 import AddLecturerDetails from "./AddLecturerDetails";
 import ViewLecturerDetails from "./ViewLecturerDetails";
-import LecPic from "./lecturer.jpg";
+import LecPic from "./Common/lec3.jpg";
 import history from "./Common/history";
+import Carousel from "react-bootstrap/Carousel";
+import Img1 from "./Common/lec3.jpg";
+import Img2 from "./Common/lec2.jpg";
+import Img3 from "./Common/lec1.jpg";
 
 export default class LecturerHomePage extends Component{
-
-    // handleAddLecturerDetailsClick = () => {
-    //     history.push('/AddLec');
-    // }
-    //
-    // handleViewLecturerDetailsClick = () => {
-    //     history.push('/ViewLec');
-    // }
 
     render() {
         return (
             <div className="main">
-                <LecNav/>
-                <h3> Lecturer Details </h3>
                 <div className="form">
                     <form>
+                        <LecNav/>
+                        <br/>
+                        <h3> Lecturer Details </h3><br/>
                         <div>
-                            <img className="MainPic" src={LecPic} alt={"Main Pic"}/>
+                            <center>
+                                <Carousel>
+                                    <Carousel.Item>
+                                        <img
+                                            className="d-block w-100"
+                                            style={{height:"40rem"}}
+                                            src={Img1}
+                                            alt="First slide"
+                                        />
+                                    </Carousel.Item>
+                                    <Carousel.Item>
+                                        <img
+                                            className="d-block w-100"
+                                            style={{height:"40rem"}}
+                                            src={Img2}
+                                            alt="Third slide"
+                                        />
+
+                                    </Carousel.Item>
+                                    <Carousel.Item>
+                                        <img
+                                            className="d-block w-100"
+                                            style={{height:"40rem"}}
+                                            src={Img3}
+                                            alt="Third slide"
+                                        />
+
+                                    </Carousel.Item>
+                                </Carousel>
+                            </center>
                         </div>
-                        {/*<div>*/}
-                        {/*    <div className="form-group mx-sm-3 mb-2">*/}
-                        {/*        <button id="AddLec" type="submit" className="btn my-1"*/}
-                        {/*                style={{backgroundColor: "#312450", color: "white", float: "left"}}*/}
-                        {/*                onClick={this.handleAddLecturerDetailsClick}> Add Lecturer Details*/}
-                        {/*        </button>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="form-group mx-sm-3 mb-2">*/}
-                        {/*        <button id="ViewLec" type="submit" className="btn my-1"*/}
-                        {/*                style={{backgroundColor: "#312450", color: "white", float: "right"}}*/}
-                        {/*                onClick={this.handleViewLecturerDetailsClick}> View Lecturer*/}
-                        {/*            Details*/}
-                        {/*        </button>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
                     </form>
                 </div>
             </div>

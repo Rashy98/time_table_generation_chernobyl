@@ -6,43 +6,35 @@ const LecturerSchema = new schema({
 
     empID : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
     fullName : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
     faculty : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
     department : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
     center : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
     building : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
     level : {
         type: Number,
-        required: true,
-        unique:true,
+        required: true
     },
     rank : {
         type: Number,
-        required: true,
-        unique:true,
+        required: true
     }
 });
 

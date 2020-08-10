@@ -6,50 +6,42 @@ const SubjectSchema = new schema({
 
     offYear : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
 
     offSem : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
 
     subject : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
 
     subjectCode : {
         type: String,
-        required: true,
-        unique:true,
+        required: true
     },
 
     lecHr : {
         type: Number,
-        required: true,
-        unique:true,
+        required: true
     },
 
     tutHr : {
         type: Number,
-        required: true,
-        unique:true,
+        required: true
     },
 
     labHr : {
         type: Number,
-        required: true,
-        unique:true,
+        required: true
     },
 
     eveHr : {
         type: Number,
-        required: true,
-        unique:true,
+        required: true
     }
 });
 
