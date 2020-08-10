@@ -6,14 +6,6 @@
     display: inline-block;
 }
 
-/*.cell {*/
-/*    float: left;*/
-/*    min-height: 20vh;*/
-/*    width: 49%;*/
-/*    !*text-align: center;*!*/
-/*    !*border: 1px solid black;*!*/
-/*    min-width: 10vh;*/
-/*}*/
 .chart{
     width: 40vh;
     height: 40vh;
@@ -42,8 +34,9 @@
     color: white;
 }
 
-.navbar a.active {
+.navbar a:active {
     background-color: #312450;
+
 }
 
 h3{

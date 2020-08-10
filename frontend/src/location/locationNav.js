@@ -1,7 +1,7 @@
 import React,{Component} from "react";
-import nav from "../assets/css/navbar.css";
-import common from "../assets/css/common.css";
-import location from "../assets/css/location.css";
+// import nav from "../assets/css/navbar.css";
+// import common from "../assets/css/common.css";
+// import location from "../assets/css/location.css";
 
 export default class LocNav extends Component{
     render() {

@@ -8,8 +8,19 @@ import ViewLocation from "./location/ViewLocation";
 import ViewRoomDetails from "./location/ViewRoomDetail";
 import SubjectStat from "./Statistics/SubjectStat";
 import LecturerStats from "./Statistics/LectureStats";
+import EditRoom from "./location/EditRoom";
 
-//Working Days
+//Lecturer
+import LecturerHomePage from "./Lecturer/LecturerHomePage";
+import AddLecturerDetails from "./Lecturer/AddLecturerDetails";
+import ViewLecturerDetails from "./Lecturer/ViewLecturerDetails";
+
+//Subject
+import SubjectHomePage from "./Subject/SubjectHomePage";
+import AddSubjectDetails from "./Subject/AddSubjectDetails";
+import ViewSubjectDetails from "./Subject/ViewSubjectDetails";
+
+//Working days
 import WorkingDaysMain from "./WorkingDays/WorkingDaysMain";
 import AddWeekdayWorkingDays from "./WorkingDays/AddWeekdayWorkingDays";
 import AddWeekendWorkingDays from "./WorkingDays/AddWeekendWorkingDays";
@@ -22,27 +33,41 @@ import ViewTag from "./tag/ViewTag";
 import AddStudent from "./Student/AddStudentData";
 
 
-
 function App() {
   return (
       <Router>
         <NavBar/>
         <switch>
 
-            {/*Admin*/}
+            {/*Location*/}
             <Route path="/AddLocation" exact component={AddLocationData} />
+            <Route path="/ViewLocation" component={ViewLocation}/>
+            <Route path="/ViewRoom" component={ViewRoomDetails}/>
+            <Route path="/UpdateRoom/:id" component={EditRoom}/>
+
+            {/*Statistics*/}
             <Route path="/StuStats" component={StudentStats}/>
             <Route path="/LecturerStats" component={LecturerStats}/>
             <Route path="/SubjectStats" component={SubjectStat}/>
-            <Route path="/ViewLocation" component={ViewLocation}/>
-            <Route path="/ViewRoom" component={ViewRoomDetails}/>
+
+
+            {/*Lecturers & Subjects*/}
+          <Route path="/LecHome" component={LecturerHomePage}/>
+          <Route path="/AddLec" component={AddLecturerDetails}/>
+          <Route path="/ViewLec" component={ViewLecturerDetails}/>
+          <Route path="/SubHome" component={SubjectHomePage}/>
+          <Route path="/AddSub" component={AddSubjectDetails}/>
+          <Route path="/ViewSub" component={ViewSubjectDetails}/>
 
             {/*Working Days*/}
-            <Route path="/WorkingDaysMain" component={WorkingDaysMain}/>
-            <Route path="/AddWeekdayWorkingDays" component={AddWeekdayWorkingDays}/>
-            <Route path="/AddWeekendWorkingDays" component={AddWeekendWorkingDays}/>
-            <Route path="/ViewWeekdayWorkingDays" component={ViewWeekdayWorkingDays}/>
-            <Route path="/ViewWeekendWorkingDays" component={ViewWeekendWorkingDays}/>
+          <Route path="/WorkingDaysMain" component={WorkingDaysMain}/>
+          <Route path="/AddWeekdayWorkingDays" component={AddWeekdayWorkingDays}/>
+          <Route path="/AddWeekendWorkingDays" component={AddWeekendWorkingDays}/>
+          <Route path="/ViewWeekdayWorkingDays" component={ViewWeekdayWorkingDays}/>
+          <Route path="/ViewWeekendWorkingDays" component={ViewWeekendWorkingDays}/>
+
+
+
 
             {/*TagsAndStudents*/}
             <Route path="/AddTag" component={AddTag}/>

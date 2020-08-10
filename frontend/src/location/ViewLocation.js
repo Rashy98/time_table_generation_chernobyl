@@ -12,16 +12,21 @@ import axios from 'axios';
 const Building = props => (
 
     <tr>
-        <td>{props.building.building}</td>
+        {/*{props.editables === true ?*/}
+        {/*    <td><input type='text'>{props.building._id}</input></td>:*/}
+            <td>{props.building.building}</td>
+        {/*}*/}
+
         <td>
             <button className="btn my-1" ><Link style={{color:"lavender"}}
                 // to={"/EditCategory/"+props.category._id}
+                onClick={props.EditBuilding}
             >Edit</Link></button>
             &nbsp;
         <button className="btn my-1">
 
             <a href="#" style={{color:"lavender"}}
-               // onClick={() => {props.RemoveBuilding(props.building._id)}}
+               onClick={() => {props.RemoveBuilding(props.building._id)}}
             >
                 Delete</a></button>
         </td>
@@ -34,14 +39,22 @@ class ViewBuilding extends Component {
         super(props);
 
         this.RemoveBuilding = this.RemoveBuilding.bind(this);
+        this.editableChange = this.editableChange.bind(this);
 
         this.state = {
             buildings: [],
             loading: true,
+            editable: true
         };
 
     }
 
+    editableChange(){
+        this.setState({
+            editable:true
+        })
+        console.log(this.state.editable)
+    }
     componentDidMount() {
         axios.get('/building/')
             .then(response => {
@@ -64,14 +77,14 @@ class ViewBuilding extends Component {
             .then(res => console.log(res.data));
 
         this.setState({
-            buildings: this.state.building.filter(el => el._id != id)
+            buildings: this.state.buildings.filter(el => el._id != id)
         })
     }
 
    BuildingList() {
         return this.state.buildings.map(building => {
             return <Building building={building} RemoveBuilding={this.RemoveBuilding}
-                             key={building._id}/>;
+                             key={building._id} editables={this.state.editable} EditBuilding={this.editableChange}/>;
         })
     }
 
