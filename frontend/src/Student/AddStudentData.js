@@ -158,7 +158,7 @@ export default class AddStudentData extends Component{
                         </div>
                         <div className="form-group mx-sm-3 mb-2">
                             <label htmlFor="CodeInput" style={{fontSize: '16px', color: "mediumslateblue"}}>Sub Group Number</label>
-                            <input type="number" className="form-control" id="CodeInput" placeholder="Subject Code"
+                            <input type="number" className="form-control" id="CodeInput" placeholder="Sub group number"
                                    onChange={this.onChangeSubgroup}
                                    value={this.state.subgroup}/>
                         </div>

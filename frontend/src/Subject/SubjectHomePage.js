@@ -10,7 +10,7 @@ export default class SubjectHomePage extends Component{
     render() {
         return(
             <div className="main">
-                <div className="form">
+                {/*<div className="form">*/}
                     <form>
                         <SubNav/><br/>
                         <h3> Subject Details </h3><br/>
@@ -47,7 +47,7 @@ export default class SubjectHomePage extends Component{
                             </center>
                         </div>
                     </form>
-                </div>
+                {/*</div>*/}
             </div>
         );
     }

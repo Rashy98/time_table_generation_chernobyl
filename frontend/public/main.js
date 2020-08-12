@@ -16,16 +16,7 @@ app.on('ready',function (){
     mainWindow = new BrowserWindow(({
         webPreferences: { nodeIntegration: true }
     }));
-    mainWindow.webContents.openDevTools();
-    //mainWindow.webContents.openDevTools();
-
-    // mainWindow.loadURL('http://localhost:3000')
-    // mainWindow.loadURL('http://localhost:3000');
-    // mainWindow.loadURL(url.format({
-    //     pathname: path.join(__dirname,'index.html'),
-    //     protocol:'file:',
-    //     slashes:true
-    // }));
+    mainWindow.maximize();
     mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     mainWindow.on('closed',function () {
         app.quit();

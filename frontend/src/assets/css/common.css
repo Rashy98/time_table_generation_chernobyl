@@ -1,5 +1,5 @@
 .main {
-    margin-left: 15.5rem; /* Same as the width of the sidenav */
+    margin-left: 14.9rem; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
 }
@@ -15,9 +15,19 @@
     font-size: 25px;
 }
 
+Table thead{
+
+    background-color: #312450;
+    color: white;
+}
+
+Table{
+    margin-top: 4.5%;
+   background-color: lavender;
+}
 button{
     background-color: #312450;
-    color: lavender;
+    color: #DDCCDD;
     border-radius: 15%;
 }
 
@@ -30,4 +40,9 @@ table th{
 }
 table td{
     font-size: 18px;
+}
+
+.statistics{
+    background-color: lavender;
+    /*border: 2px;*/
 }

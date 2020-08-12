@@ -34,7 +34,7 @@
     color: white;
 }
 
-.navbar a:active {
+.navbar a --active {
     background-color: #312450;
 
 }

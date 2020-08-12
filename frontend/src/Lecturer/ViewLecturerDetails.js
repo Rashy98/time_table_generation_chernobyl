@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import LecNav from "./Common/LecNav";
-import ViewLecturer from "../assets/css/lecturer.css";
+import ViewLecturer from "../assets/css/location.css";
+import stat from "../assets/css/stats.css"
+import common from "../assets/css/common.css"
 import {Container, Spinner, Table} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import axios from "axios";
@@ -72,15 +74,16 @@ class ViewLecturerDetails extends Component {
 
     render() {
         return(
-
-            <div id="page-container" className="main" style={{}}>
+            <div id="page-container" className='main'>
                 <LecNav/><br/>
-                <Container>
-                    <div className="" >
 
+                <Container>
+                    {/*/!*<div className="form"*!/*/}
+                    {/*     // style={{width:"60%"}}*/}
+                    {/*/!*>*!/*/}
                         <h3> Lecturer Details </h3><br/>
-                        <Table style={{bgColor:"lavender",width:"100%"}}>
-                            <thead className="thead-light">
+                        <Table responsive>
+                            <thead>
                             {this.state.loading ? <center><Spinner animation="border" /></center> :
                                 <tr>
                                     <th style={{fontSize: '15px'}}>Employee ID</th>
@@ -91,7 +94,7 @@ class ViewLecturerDetails extends Component {
                                     <th style={{fontSize: '15px'}}>Building</th>
                                     <th style={{fontSize: '15px'}}>Level</th>
                                     <th style={{fontSize: '15px'}}>Rank</th>
-                                    <th style={{fontSize: '15px'}}>Edit Or Delete</th>
+                                    <th style={{fontSize: '15px',width:'50%'}}>Edit Or Delete</th>
                                 </tr>
                             }
                             </thead>
@@ -99,7 +102,7 @@ class ViewLecturerDetails extends Component {
                             {this.LecturerList()}
                             </tbody>
                         </Table>
-                    </div>
+                    {/*</div>*/}
                 </Container>
             </div>
         );

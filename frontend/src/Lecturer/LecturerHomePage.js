@@ -13,8 +13,8 @@ export default class LecturerHomePage extends Component{
 
     render() {
         return (
-            <div className="main">
-                <div className="form">
+            <div className="main" style={{width:'100%', alignContent:"center"}}>
+                <div className="form" style={{marginLeft: '3%', width: '80%'}}>
                     <form>
                         <LecNav/>
                         <br/>

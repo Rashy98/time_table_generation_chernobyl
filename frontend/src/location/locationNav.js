@@ -1,4 +1,5 @@
 import React,{Component} from "react";
+import {NavLink} from "react-router-dom";
 // import nav from "../assets/css/navbar.css";
 // import common from "../assets/css/common.css";
 // import location from "../assets/css/location.css";
@@ -7,9 +8,20 @@ export default class LocNav extends Component{
     render() {
         return (
             <div className="navbar">
-                <a href="/AddLocation">Add Building and Room</a>
-                <a  href="/ViewLocation">View Building Data</a>
-                <a  href="/ViewRoom">View Room Data</a>
+                <NavLink to="/AddLocation"
+                   activeClassName="navbar__link--active"
+                   className="navbar__link">
+                    Add Building and Room
+                </NavLink>
+                <NavLink to="/ViewLocation"
+                         activeClassName="navbar__link--active"
+                         className="navbar__link">
+                    View Building Data
+                </NavLink>
+                <NavLink  to="/ViewRoom"
+                    activeClassName="navbar__link--active"
+                    className="navbar__link">
+                    View Room Data</NavLink>
             </div>
         );
     }

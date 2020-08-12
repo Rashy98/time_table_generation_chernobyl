@@ -87,8 +87,8 @@ class ViewRoomDetail extends Component {
 
                 <Container>
                     <h3>View Room Details</h3>
-                    <Table responsive style={{bgColor:"lavender"}}>
-                        <thead className="thead-light">
+                    <Table responsive>
+                        <thead>
                         {this.state.loading ? <center><Spinner animation="border" /></center> :
                             <tr>
                                 <th>Building</th>

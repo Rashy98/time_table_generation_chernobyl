@@ -177,9 +177,10 @@ export default class AddLecturerDetails extends Component{
     render() {
         return (
             <div className="main">
+                <LecNav/><br/>
+                <h3>Add Lecturer Details</h3>
                 <div className="form">
-                    <LecNav/><br/>
-                    <h3>Add Lecturer Details</h3>
+
                     <form onSubmit={this.AddLecturer}>
                         <div className="form-group mx-sm-3 mb-2">
                             <label

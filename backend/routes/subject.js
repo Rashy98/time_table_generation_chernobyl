@@ -16,6 +16,11 @@ router.route('/viewSub').get((req, res) => {
         .catch(err => res.status(400).json({success: false, err: err}));
 });
 
+router.route('/').get((req, res) => {
+    Subject.find()
+        .then(managers => res.json(managers))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 router.route('/addSub').post((req, res) => {
     //console.log(req.body);
 

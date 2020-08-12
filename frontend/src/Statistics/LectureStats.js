@@ -26,10 +26,9 @@ export default class LecturerStats extends Component{
     handleType(e){
         this.setState({
             selectedRadio:e.target.value
-
         })
-        console.log(this.state.selectedRadio);
-        this.lecturesByDepartment(this.state.lecturers,this.state.selectedRadio);
+
+        this.lecturesByDepartment(this.state.lecturers,e.target.value);
 
     }
     componentDidMount() {
@@ -82,20 +81,20 @@ export default class LecturerStats extends Component{
                             data:facCounts
                             ,
                             backgroundColor: [
-                                '#FF6384',
-                                '#36A2EB',
-                                '#FFCE56',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                '#bc5090',
+                                '#ef5675',
+                                '#ff764a',
+                                '#ffa600',
+                                '#003f5c',
+                                '#7a5195'
                             ],
                             hoverBackgroundColor: [
-                                '#FF6384',
-                                '#36A2EB',
-                                '#FFCE56',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                '#bc5090',
+                                '#ef5675',
+                                '#ff764a',
+                                '#ffa600',
+                                '#003f5c',
+                                '#7a5195'
                             ]
                         }]
                     }
@@ -146,17 +145,19 @@ export default class LecturerStats extends Component{
                             label:'Count',
                             data:LevelCounts,
                             backgroundColor: [
-                                '#FF6384',
-                                '#36A2EB',
+                                '#58508d',
+                                '#bc5090',
                                 '#FFCE56',
+                                '#ff764a',
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)'
                             ],
                             hoverBackgroundColor: [
-                                '#FF6384',
-                                '#36A2EB',
+                                '#58508d',
+                                '#bc5090',
                                 '#FFCE56',
+                                '#ff764a',
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)'
@@ -195,20 +196,20 @@ export default class LecturerStats extends Component{
                             // label:'Count',
                             data:LecCounts,
                             backgroundColor: [
-                                '#FF6384',
-                                '#36A2EB',
-                                '#FFCE56',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                '#bc5090',
+                                '#ef5675',
+                                '#ff764a',
+                                '#ffa600',
+                                '#003f5c',
+                                '#7a5195'
                             ],
                             hoverBackgroundColor: [
-                                '#FF6384',
-                                '#36A2EB',
-                                '#FFCE56',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                '#bc5090',
+                                '#ef5675',
+                                '#ff764a',
+                                '#ffa600',
+                                '#003f5c',
+                                '#7a5195'
                             ]
                         }]
                     }
@@ -243,23 +244,24 @@ export default class LecturerStats extends Component{
             lecByDep : {
                 labels: Departments,
                 datasets: [{
-                    // label:'Count',
+                    label:'Lecturer Count',
                     data:LecCounts,
+
                     backgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        '#bc5090',
+                        '#ef5675',
+                        '#ff764a',
+                        '#ffa600',
+                        '#003f5c',
+                        '#7a5195'
                     ],
                     hoverBackgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        '#bc5090',
+                        '#ef5675',
+                        '#ff764a',
+                        '#ffa600',
+                        '#003f5c',
+                        '#7a5195'
                     ]
                 }]
             }
@@ -276,9 +278,9 @@ export default class LecturerStats extends Component{
                 <StatNav/>
                 <h3>Lecturer Statistics</h3>
 
-                <div className="container">
+                <div className="container" >
                         <div className="row">
-                        <div className="col">
+                        <div className="col statistics">
                             <h3>Lecturer count by level</h3>
                             <Bar data={this.state.lecByLevel}
                                  options={{
@@ -291,35 +293,35 @@ export default class LecturerStats extends Component{
                                      }
                                  }}/>
                         </div>
-                            <div className="col">
+                            <div className="col ml-3 statistics">
                                 <h3>Lecturers per faculty</h3>
                                 <Pie data={this.state.lecPerFac} />
                             </div>
                         </div>
                     <br/><br/>
                     <div className="row">
-                        <div className="col">
+                        <div className="col statistics">
                             <h3>Lecturer count by center</h3>
-
-
                             <Pie data={this.state.lecByCenter} />
                         </div>
-                        <div className="col">
+                        <div className="col statistics ml-3">
                             <h3>Lecturers per department</h3>
-
-                                {this.state.faculties.map(lec =>{
+                                <h6>Please Select a Faculty</h6>
+                                {this.state.faculties.map((lec,index) =>{
                                    return(
                                     <div className="form-check form-check-inline mx-sm-3 mb-2">
                                         <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value={lec}
                                                // checked={this.state.selectedRadio === 'Lecture hall'}
+                                               // defaultChecked={index === 0}
                                                onChange={this.handleType}/>
                                         <label className="form-check-label" htmlFor="inlineRadio1"  style={{fontSize: "16px",color: "#312450"}}>{lec}</label>
                                         </div>
                                    )
 
-
                                 })
                                 }
+
+
 
 
                             <Bar data={this.state.lecByDep}
@@ -330,8 +332,8 @@ export default class LecturerStats extends Component{
                                                  beginAtZero: true
                                              }
                                          }]
-                                     }
-                                 }}/>
+                                     }}}
+                            />
                         </div>
 
                     </div>

@@ -48,7 +48,7 @@ table {
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1.5px solid #312450;
 }
 
 /* --------------------------------------------- Old NavBar ccs -------------------------------------------------- */
@@ -108,6 +108,6 @@ table, th, td {
 }
 
 .navbar__link--active {
-  background-color: mediumslateblue;
+  background-color: rgba(58, 29, 125, 0.48);
   transition: border-bottom .5s ease-in-out;
 }

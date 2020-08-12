@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import location from "../assets/css/location.css"
 import stat from "../assets/css/stats.css"
-import common from "../assets/css/common.css"
 import LocNav from "./locationNav";
 import {Link} from 'react-router-dom';
 import {Button, Container, Spinner, Table} from "react-bootstrap";
@@ -94,10 +93,11 @@ class ViewBuilding extends Component {
                 <div id="page-container" className='main'>
                     <LocNav/>
 
-                    <Container>
+                    <Container >
                             <h3>View Location</h3>
-                        <Table responsive style={{bgColor:"lavender"}}>
-                            <thead className="thead-light">
+
+                        <Table responsive>
+                            <thead style={{backgroundColor:"#312450",color:'white'}}>
                             {this.state.loading ? <center><Spinner animation="border" /></center> :
                                 <tr>
                                     <th>Building</th>
