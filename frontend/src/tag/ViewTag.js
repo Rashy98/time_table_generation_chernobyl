@@ -10,18 +10,17 @@ import axios from 'axios';
 
 
 const Tag = props => (
-
     <tr>
         <td>{props.tag.tag}</td>
         <td>
             <button className="btn my-1" ><Link style={{color:"lavender"}}
-                // to={"/EditCategory/"+props.category._id}
+                to={{pathname:"/UpdateTag",tagid:{id:props.tag._id}}}
             >Edit</Link></button>
             &nbsp;
             <button className="btn my-1">
 
                 <a href="#" style={{color:"lavender"}}
-                    // onClick={() => {props.RemoveBuilding(props.building._id)}}
+                    onClick={() => {props.RemoveTag(props.tag._id)}}
                 >
                     Delete</a></button>
         </td>
@@ -64,7 +63,7 @@ class ViewTag extends Component {
             .then(res => console.log(res.data));
 
         this.setState({
-            tags: this.state.tag.filter(el => el._id != id)
+            tags: this.state.tags.filter(rm => rm._id != id)
         })
     }
 

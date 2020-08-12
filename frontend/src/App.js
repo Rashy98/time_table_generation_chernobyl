@@ -27,10 +27,14 @@ import AddWeekendWorkingDays from "./WorkingDays/AddWeekendWorkingDays";
 import ViewWeekdayWorkingDays from "./WorkingDays/ViewWeekdayWorkingDays";
 import ViewWeekendWorkingDays from "./WorkingDays/ViewWeekendWorkingDays";
 
-//Tags
+//Tags And Groups
 import AddTag from "./tag/AddTagDetails";
 import ViewTag from "./tag/ViewTag";
+import UpdateTag from "./tag/editTag";
 import AddStudent from "./Student/AddStudentData";
+import ViewStudent from "./Student/ViewStudent";
+import UpdateStudent from "./Student/EditStudentData";
+
 
 
 function App() {
@@ -69,10 +73,14 @@ function App() {
 
 
 
-            {/*TagsAndStudents*/}
-            <Route path="/AddTag" component={AddTag}/>
-            <Route path="/ViewTag" component={ViewTag}/>
-            <Route path="/AddStudent" component={AddStudent}/>
+           {/*TagsAndStudents*/}
+          <Route path="/AddTag" component={AddTag}/>
+          <Route path="/ViewTag" component={ViewTag}/>
+          <Route path="/UpdateTag" component={UpdateTag}/>
+          <Route path="/AddStudent" component={AddStudent}/>
+          <Route path="/ViewStudent" component={ViewStudent}/>
+          <Route path="/UpdateGroup" component={UpdateStudent}/>
+
         </switch>
       </Router>
   );

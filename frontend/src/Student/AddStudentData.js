@@ -1,143 +1,172 @@
 import React, { Component } from 'react';
 import location from "../assets/css/location.css"
 import stat from "../assets/css/stats.css";
-//import TagNav from "./tagNav.js";
+import StudNav from "./studentNav.js";
 import axios from 'axios';
 
 
-export default class AddTagDetails extends Component{
+export default class AddStudentData extends Component{
 
     constructor(props) {
         super(props);
 
         this.state={
-            tag :"",
-            selectedTag:"",
-            Tags:[],
+            year :"",
+            programme:"",
+            groups:"",
+            subgroup:"",
+            groupId:"",
+            Students:[],
 
         }
-        this.onChangeTag = this.onChangeTag.bind(this);
-        this.AddTag = this.AddTag.bind(this);
+        this.onChangeYear = this.onChangeYear.bind(this);
+        this.onChangeProgramme = this.onChangeProgramme.bind(this);
+        this.onChangeGroups = this.onChangeGroups.bind(this);
+        this.onChangeSubgroup = this.onChangeSubgroup.bind(this);
+        this.onChangeGroupId = this.onChangeGroupId.bind(this);
+
+        this.AddStudent = this.AddStudent.bind(this);
 
     }
-    onChangeTag(e){
+    onChangeYear(e){
         this.setState({
-            tag: e.target.value
+            year: e.target.value
+        })
+    }
+    onChangeProgramme(e){
+        this.setState({
+            programme: e.target.value
+        })
+    }
+    onChangeGroups(e){
+        this.setState({
+            groups: e.target.value
+        })
+    }
+    onChangeSubgroup(e){
+        this.setState({
+            subgroup: e.target.value
+        })
+    }
+    onChangeGroupId(e){
+        this.setState({
+            groupId: e.target.value
         })
     }
 
-    handleValidation(){
-        let valid = true;
-        if(this.state.tag !== '') {
-            this.state.Tags.map(tag => {
-                if (tag.tag === this.state.tag) {
-                    valid = false;
-                    alert("Tag already exists")
-                    // this.setState({
-                    //     tagVal: "This Tag already exists",
-                    // })
-
-                }
-            })
-        }
-        return valid;
-    }
+    // handleValidation(){
+    //     let valid = true;
+    //     if(this.state.tag !== '') {
+    //         this.state.Tags.map(tag => {
+    //             if (tag.tag === this.state.tag) {
+    //                 valid = false;
+    //                 alert("Tag already exists")
+    //                 // this.setState({
+    //                 //     tagVal: "This Tag already exists",
+    //                 // })
+    //
+    //             }
+    //         })
+    //     }
+    //     return valid;
+    // }
     componentDidMount() {
-        axios.get('/tag/')
+        axios.get('/students/')
             .then(res => {
                 this.setState({
-                    Tags: res.data,
+                    Students: res.data,
                 })
             });
     }
 
-    AddTag(e){
-        e.preventDefault();
-        if(this.handleValidation()) {
-            const tag = {
-                tag: this.state.tag
+    AddStudent(e){
+        const student = {
+                year: this.state.year,
+                programme: this.state.programme,
+                groups: this.state.groups,
+                subgroup: this.state.subgroup,
+                groupId: this.state.year +"."+ this.state.programme +"."+ this.state.groups +"."+ this.state.subgroup
+
             }
-            console.log(this.state.tag);
-            axios.post("/tag/add", tag)
-                .then(res => console.log(res.data));
+            console.log(this.state.student);
+            axios.post("/students/add", student)
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err))
+                 alert('Item Added')
 
             this.setState({
-                tag: ""
+                year: "",
+                programme: "",
+                groups: "",
+                subgroup: "",
+                groupId: ""
+
             })
-            alert("Tag added!")
-        }
-        else{
-            alert("Tag NOT added!")
-        }
+             window.location = '/ViewStudent';
+        //     alert("Tag added!")
+        // // }
+        // else{
+        //     alert("Tag NOT added!")
+        // }
     }
 
     render() {
-        const tags = this.state.Tags;
+        // const students = this.state.Tags;
         return (
             <div className="main">
-                {/*<TagNav/>*/}
-                <h3> Add Tag Details</h3>
+                <StudNav/>
+                <h3> Add Student Details</h3>
                 <div className="form">
-                    <form className="form-inline" >
+                    <form className=" " >
                         <div className="form-group mx-sm-3 mb-2">
-                            <label htmlFor="btagInput" className="sr-only">Tag</label>
-                            <input type="text" className="form-control" id="tagInput" placeholder="Tag Name"
-                                //    value={this.state.tag}
-                                   onChange={this.onChangeTag}/>
-                            <br/>
-                            <p className='text-danger small'>{this.state.tagVal}</p>
+                            <label style={{fontSize: '16px', color: "mediumslateblue"}} htmlFor="YearInputSelect">Offered Year</label><br/>
+                            <select className="form-control " id="YearInputSelect"
+                                    onChange={this.onChangeYear}
+                            >
+                                <option selected style={{fontSize:'15px'}}>Choose Year...</option>
+                                <option value="Y1.S1">1st Year 1st Semester</option>
+                                <option value="Y1.S2">1st Year 2nd Semester</option>
+                                <option value="Y2.S1">2nd Year 1st Semester</option>
+                                <option value="Y2.S2">2nd Year 2nd Semester</option>
+                                <option value="Y3.S1">3rd Year 1st Semester</option>
+                                <option value="Y3.S2">3rd Year 2nd Semester</option>
+                                <option value="Y4.S1">4th Year 1st Semester</option>
+                                <option value="Y4.S2">4th Year 2nd Semester</option>
+
+                            </select>
                         </div>
-                        <button className="btn mb-2" onClick={this.AddTag}>
+                        <div className="form-group mx-sm-3 mb-2">
+                            <label style={{fontSize: '16px', color: "mediumslateblue"}} htmlFor="ProgInputSelect">Programme</label>
+                            <select className="form-control " id="ProgInputSelect"
+                                    onChange={this.onChangeProgramme}
+                            >
+                                <option selected style={{fontSize:'15px'}}>Choose Programme...</option>
+                                <option value="IT">IT</option>
+                                <option value="SE">SE</option>
+                                <option value="CN">CN</option>
+                                <option value="IM">IM</option>
+                                <option value="DS">DS</option>
+                                <option value="ISE">ISE</option>
+
+                            </select>
+                        </div>
+                        <div className="form-group mx-sm-3 mb-2">
+                            <label htmlFor="GrpInput" style={{fontSize: '16px', color: "mediumslateblue"}}>Group Number</label>
+                            <input type="number" className="form-control" id="GrpInput" placeholder="Group Number"
+                                   onChange={this.onChangeGroups}
+                                   value={this.state.groups}/>
+                        </div>
+                        <div className="form-group mx-sm-3 mb-2">
+                            <label htmlFor="CodeInput" style={{fontSize: '16px', color: "mediumslateblue"}}>Sub Group Number</label>
+                            <input type="number" className="form-control" id="CodeInput" placeholder="Subject Code"
+                                   onChange={this.onChangeSubgroup}
+                                   value={this.state.subgroup}/>
+                        </div>
+                        <button className="btn mb-2" style={{marginLeft: "40%",marginTop: "5%"}} onClick={this.AddStudent}>
                             Add Tag
                         </button>
                     </form>
-                    <br/>
-                    <br/>
-                    {/* <form>
 
-                            <div className="form-group mx-sm-3 mb-2">
-                                <h5>Room</h5>
-                                <label className="sr-only" htmlFor="inlineFormCustomSelectPref">Building</label>
-                                <select className="form-control " id="inlineFormCustomSelectPref"
-                                        value={this.state.roomBuild}
-                                        onChange={this.onChangeroomBuilding}
-                                >
-                                    <option selected style={{fontSize: "15px;"}}>Choose Building...</option>
-                                    {
-                                        this.state.Buildings.map(building => {
-                                            return (<option>{building.building}</option>);
-                                        })
-                                    }
-
-                                </select>
-                            </div>
-
-                            <div className="form-group mx-sm-3 mb-2">
-                                <label htmlFor="roomInput" className="sr-only">Room</label>
-                                <input type="text" className="form-control" id="roomInput" placeholder="Room" />
-                            </div>
-                            <div className="form-group mx-sm-3 mb-2">
-                                <label htmlFor="roomInput" className="sr-only">Capacity</label>
-                                <input type="number" className="form-control" id="capacityInput" placeholder="Capacity" />
-                            </div>
-
-                            <div className="form-check form-check-inline mx-sm-3 mb-2">
-                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Lecture_hall" />
-                                    <label className="form-check-label" htmlFor="inlineRadio1"  style={{fontSize: "16px",color: "#312450"}}>Lecture Hall</label>
-
-                            </div>
-                            <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="lab" />
-                                    <label className="form-check-label" htmlFor="inlineRadio2"
-                                           style={{fontSize: "16px",color: "#312450"}}>Laboratory</label>
-
-                            </div>
-                            <div className="form-group mx-sm-3 mb-2" style={{textAlign: "center"}}>
-                                <button type="submit" className="btn my-1 " >Add Room
-                                </button>
-                            </div>
-
-                        </form> */}
 
                 </div>
             </div>

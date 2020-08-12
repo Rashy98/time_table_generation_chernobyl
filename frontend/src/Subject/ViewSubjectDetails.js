@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import SubNav from "./Common/SubNav";
 import {Container, Spinner, Table} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import ViewLecturer from "../assets/css/location.css";
 import axios from "axios";
 
 const Subject = props => (
@@ -73,11 +74,12 @@ class ViewSubjectDetails extends Component {
     render() {
         return(
             <div id="page-container" className="main">
-                <Container>
-                    <div className="form" >
-                        <SubNav/><br/>
+                <SubNav/><br/>
+                <Container >
+                    <div className="form" style={{marginLeft:"-2%"}}>
+
                         <h3> Subject Details </h3><br/>
-                        <Table responsive style={{bgColor:"lavender"}}>
+                        <Table style={{bgColor:"lavender", width:"100%"}}>
                             <thead className="thead-light">
                             {this.state.loading ? <center><Spinner animation="border" /></center> :
                                 <tr>

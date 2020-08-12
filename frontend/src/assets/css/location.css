@@ -7,11 +7,12 @@ h3{
 .form{
     background: lavender;
     float: left;
-    width: 100%;
+    min-width: 100%;
     padding: 40px 40px 40px 40px;
     /*padding-right: 40px;*/
     border-radius: 5px;
     margin-right: 10px;
+
 }
 
 h5{
@@ -26,9 +27,9 @@ h5{
 
 @media screen and (min-height: 750px) and  (min-width: 750px){
     .form{
-        width: 50%;
+        width: 100%;
         padding: 60px 60px 60px 60px;
-        margin-left: 25%;
+        margin-left: 2%;
         margin-top: 5%;
     }
     .form2{

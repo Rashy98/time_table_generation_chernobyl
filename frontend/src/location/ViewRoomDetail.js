@@ -69,6 +69,7 @@ class ViewRoomDetail extends Component {
         this.setState({
             rooms: this.state.rooms.filter(rm => rm._id != id)
         })
+
     }
 
     RoomList() {

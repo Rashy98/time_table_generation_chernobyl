@@ -72,12 +72,14 @@ class ViewLecturerDetails extends Component {
 
     render() {
         return(
-            <div id="page-container" className="main">
+
+            <div id="page-container" className="main" style={{}}>
+                <LecNav/><br/>
                 <Container>
-                    <div className="form" >
-                        <LecNav/><br/>
+                    <div className="" >
+
                         <h3> Lecturer Details </h3><br/>
-                        <Table responsive style={{bgColor:"lavender"}}>
+                        <Table style={{bgColor:"lavender",width:"100%"}}>
                             <thead className="thead-light">
                             {this.state.loading ? <center><Spinner animation="border" /></center> :
                                 <tr>

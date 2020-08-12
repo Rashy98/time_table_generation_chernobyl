@@ -6,12 +6,12 @@ const StudentSchema = new schema({
     year : {
         type: String,
         required: true,
-        unique:true,
+
     },
     programme:{
         type: String,
         required: true,
-        unique:true
+
     },
     groups:{
         type: String,
@@ -26,7 +26,8 @@ const StudentSchema = new schema({
     groupId:{
         type: String,
         required: true,
-        unique:true
+        unique:true,
+
     }
 });
 

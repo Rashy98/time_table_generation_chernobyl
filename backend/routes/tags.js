@@ -10,11 +10,17 @@ const app = express();
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-// app.use('/',router);
+app.use('/',router);
 
 router.route('/').get((req, res) => {
     Tag.find()
-        .then(managers => res.json(managers))
+        .then(tags => res.json(tags))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+router.route('/name').get((req, res) => {
+    console.log(req.query.id)
+    Tag.findById(req.query.id)
+        .then(tags => res.json(tags))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -30,6 +36,18 @@ router.route('/add').post((req, res) => {
 router.route('/:id').delete((req, res) => {
     Tag.findByIdAndDelete(req.params.id)
         .then(() => res.json('Tag deleted.'))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+router.route('/update/:id').post((req, res) => {
+    Tag.findById(req.params.id)
+        .then(tag => {
+            tag.tag = req.body.tag;
+
+
+            tag.save()
+                .then(() => res.json('Tag updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
         .catch(err => res.status(400).json('Error: ' + err));
 });
 

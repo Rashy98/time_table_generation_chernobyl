@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 const Building = require('../backend/routes/buildings');
 const Room = require('../backend/routes/rooms');
 const AddTag = require('../backend/routes/tags');
+const AddStudent = require('../backend/routes/students');
+
 const AddLecturer = require('../backend/routes/lecturer');
 const Department = require('../backend/routes/departments');
 const AddSubject = require('../backend/routes/subject');
@@ -21,6 +23,7 @@ const AddSubject = require('../backend/routes/subject');
 app.use('/building', Building);
 app.use('/room',Room);
 app.use('/tag', AddTag);
+app.use('/students', AddStudent);
 app.use('/lecturer', AddLecturer);
 app.use('/subject', AddSubject);
 app.use('/department',Department);
