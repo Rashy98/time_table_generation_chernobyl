@@ -42,6 +42,15 @@ h3{
     margin: 0 auto;
 }
 
+/* --------------------------------------------- Table Css ------------------------------------------------------- */
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
 /* --------------------------------------------- Old NavBar ccs -------------------------------------------------- */
 /* Add a black background color to the top navigation */
 .topnav {
@@ -74,7 +83,7 @@ h3{
 }
 /* --------------------------------------------- End of Old NavBar ccs --------------------------------------------- */
 
-/* New NavBar css */
+/* ---------------------------------------------    New NavBar Css     --------------------------------------------- */
 .navbar {
   display: flex;
   justify-content: center;

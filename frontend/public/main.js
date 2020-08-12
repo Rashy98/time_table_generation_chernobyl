@@ -16,7 +16,7 @@ app.on('ready',function (){
     mainWindow = new BrowserWindow(({
         webPreferences: { nodeIntegration: true }
     }));
-
+    mainWindow.webContents.openDevTools();
     //mainWindow.webContents.openDevTools();
 
     // mainWindow.loadURL('http://localhost:3000')

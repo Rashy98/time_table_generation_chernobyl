@@ -19,6 +19,8 @@ const AddStudent = require('../backend/routes/students');
 const AddLecturer = require('../backend/routes/lecturer');
 const Department = require('../backend/routes/departments');
 const AddSubject = require('../backend/routes/subject');
+app.use('/building', Building);
+app.use('/workingdays', require('../backend/routes/workingDays'));
 
 app.use('/building', Building);
 app.use('/room',Room);
