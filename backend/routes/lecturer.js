@@ -62,4 +62,28 @@ router.route('/:id').delete((req, res) => {
         .catch(err => res.status(400).json({success: false, err: err}));
 });
 
+router.route('/:id').get((req, res) => {
+    Lecturer.findById(req.params.id)
+        .then(lec => res.json(lec))
+        .catch(err => res.status(400).json({success: false, err: err}));
+});
+
+router.route('/update/:id').post((req, res) => {
+    Lecturer.findById(req.params.id)
+        .then(lecturer => {
+            lecturer.fullName = req.body.fullName;
+            lecturer.faculty = req.body.faculty;
+            lecturer.department = req.body.department;
+            lecturer.center = req.body.center;
+            lecturer.building = req.body.building;
+            lecturer.level = req.body.level;
+            lecturer.rank = req.body.rank;
+            lecturer.save()
+                .then(() => res.json('Lecturer Details updated!'))
+                .catch(err => res.status(400).json({success: false, err: err}));
+        })
+        .catch(err => res.status(400).json({success: false, err: err}));
+});
+
+
 module.exports = router;

@@ -20,8 +20,9 @@ const Subject = props => (
         <td style={{fontSize: '15px'}}>{props.subject.eveHr}</td>
         <td style={{fontSize: '15px'}}>
             <button className="btn my-1" >
-                <Link style={{color:"lavender"}}>
-                Edit
+                <Link style={{color:"lavender"}}
+                      to={"/UpdateSub/"+props.subject._id}>
+                    Edit
                 </Link>
             </button>
             &nbsp;
@@ -80,7 +81,6 @@ class ViewSubjectDetails extends Component {
 
                 <SubNav/><br/>
                 <Container>
-                    {/*<div className="form" style={{marginLeft:'-2%'}}>*/}
                         <h3> Subject Details </h3><br/>
                         <Table responsive style={{bgColor:"lavender",width:'100%'}}>
                             <thead className="thead-light">
@@ -102,7 +102,6 @@ class ViewSubjectDetails extends Component {
                             {this.SubjectList()}
                             </tbody>
                         </Table>
-                    {/*</div>*/}
                 </Container>
             </div>
         );

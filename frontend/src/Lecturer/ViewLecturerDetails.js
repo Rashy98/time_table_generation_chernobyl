@@ -19,7 +19,8 @@ const Lecturer = props => (
         <td style={{fontSize: '15px'}}>{props.lecturer.rank}</td>
         <td style={{fontSize: '15px'}}>
             <button className="btn my-1" >
-                <Link style={{color:"lavender"}}>
+                <Link style={{color:"lavender"}}
+                      to={"/UpdateLec/"+props.lecturer._id}>
                     Edit
                 </Link>
             </button>

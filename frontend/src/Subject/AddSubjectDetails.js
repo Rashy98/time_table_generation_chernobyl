@@ -16,6 +16,7 @@ export default class AddSubjectDetails extends Component{
         this.onChangeLabHr = this.onChangeLabHr.bind(this);
         this.onChangeEveHr = this.onChangeEveHr.bind(this);
         this.AddSubject = this.AddSubject.bind(this);
+        this.handleSubValidation = this.handleSubValidation.bind(this);
 
         this.state={
             offYear :"",
@@ -26,6 +27,7 @@ export default class AddSubjectDetails extends Component{
             tutHr:"",
             labHr:"",
             eveHr:"",
+            Subs:[]
         }
     }
     componentDidMount() {
@@ -78,9 +80,22 @@ export default class AddSubjectDetails extends Component{
         })
     }
 
+    handleSubValidation(){
+        let valid = true;
+        if(this.state.subjectCode !== '') {
+            this.state.Subs.map(sub => {
+                if (sub.subjectCode === this.state.subjectCode) {
+                    valid = false;
+                    alert("Subject already exists")
+                }
+            })
+        }
+        return valid;
+    }
+
     AddSubject(e){
         e.preventDefault();
-        //if(this.handleValidation()) {
+        if(this.handleSubValidation()) {
             const subject = {
                 offYear: this.state.offYear,
                 offSem: this.state.offSem,
@@ -105,17 +120,17 @@ export default class AddSubjectDetails extends Component{
                 eveHr: "",
             })
             alert("Subject Details added!")
-        // }
-        // else{
-        //     alert("Subject Details not added!")
-        // }
+        }
+        else{
+            alert("Subject Details not added!")
+        }
     }
     render() {
         return(
           <div className="main">
               <SubNav/>
               <h3> Add Subject Details </h3>
-              <div className="form">
+              {/*<div className="form">*/}
                   <form onSubmit={this.AddSubject}>
                       <div className="form-group mx-sm-3 mb-2">
                           <label
@@ -251,7 +266,7 @@ export default class AddSubjectDetails extends Component{
                           </button>
                       </div>
                   </form>
-              </div>
+              {/*</div>*/}
           </div>
         );
     }

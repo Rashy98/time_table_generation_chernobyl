@@ -16,6 +16,7 @@ export default class AddLecturerDetails extends Component{
         this.onChangeLevel = this.onChangeLevel.bind(this);
         this.onChangeRank = this.onChangeRank.bind(this);
         this.AddLecturer = this.AddLecturer.bind(this);
+        this.handleLecValidation = this.handleLecValidation.bind(this);
 
         this.state={
             empID :"",
@@ -28,7 +29,8 @@ export default class AddLecturerDetails extends Component{
             rank:"",
             Buildings:[],
             Departments:[],
-            selectedDpt:[]
+            selectedDpt:[],
+            Lecturers:[]
 
         }
     }
@@ -121,27 +123,23 @@ export default class AddLecturerDetails extends Component{
             rank: level+'.'+empID
         })
     }
-    // handleValidation(){
-    //     let valid = true;
-    //     if(this.state.empID !== '') {
-    //         this.state.Lecturer.map(lecturer => {
-    //             if (lecturer.empID === this.state.empID) {
-    //                 valid = false;
-    //                 alert("Building already exists")
-    //                 // this.setState({
-    //                 //     buildingVal: "This Building already exists",
-    //                 // })
-    //
-    //             }
-    //         })
-    //     }
-    //     return valid;
-    // }
+    handleLecValidation(){
+        let valid = true;
+        if(this.state.empID !== '') {
+            this.state.Lecturers.map(lec => {
+                if (lec.empID === this.state.empID) {
+                    valid = false;
+                    alert("Building already exists")
+                }
+            })
+        }
+        return valid;
+    }
 
     AddLecturer = (e) =>{
 
         e.preventDefault()
-        // if(this.handleValidation()) {
+        if(this.handleLecValidation()) {
             const lecturer = {
                 empID: this.state.empID,
                 fullName: this.state.fullName,
@@ -168,10 +166,10 @@ export default class AddLecturerDetails extends Component{
                 rank: ""
             })
             alert("Lecturer Details added!")
-        // }
-        // else{
-        //     alert("Lecturer Details not added!")
-        // }
+        }
+        else{
+            alert("Lecturer Details not added!")
+        }
     }
 
     render() {
@@ -312,13 +310,13 @@ export default class AddLecturerDetails extends Component{
                                 onChange={this.onChangeLevel}
                                 required>
                                 <option selected style={{fontSize: '15px'}}>Choose Level...</option>
-                                <option value="1">Professor - 1</option>
-                                <option value="2">Assistant Professor - 2</option>
-                                <option value="3">Senior Lecturer(HG) - 3</option>
-                                <option value="4">Senior Lecturer - 4</option>
-                                <option value="5">Lecturer - 5</option>
-                                <option value="6">Assistant Lecturer - 6</option>
-                                <option value="7">Instructors - 7</option>
+                                <option value="1">Professor</option>
+                                <option value="2">Assistant Professor</option>
+                                <option value="3">Senior Lecturer(HG)</option>
+                                <option value="4">Senior Lecturer</option>
+                                <option value="5">Lecturer</option>
+                                <option value="6">Assistant Lecturer</option>
+                                <option value="7">Instructor</option>
                             </select>
                         </div>
                         <div className="form-group mx-sm-3 mb-2">

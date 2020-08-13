@@ -14,11 +14,13 @@ import EditRoom from "./location/EditRoom";
 import LecturerHomePage from "./Lecturer/LecturerHomePage";
 import AddLecturerDetails from "./Lecturer/AddLecturerDetails";
 import ViewLecturerDetails from "./Lecturer/ViewLecturerDetails";
+import EditLecturerDetails from "./Lecturer/EditLecturerDetails";
 
 //Subject
 import SubjectHomePage from "./Subject/SubjectHomePage";
 import AddSubjectDetails from "./Subject/AddSubjectDetails";
 import ViewSubjectDetails from "./Subject/ViewSubjectDetails";
+import EditSubjectDetails from "./Subject/EditSubjectDetails";
 
 //Working days
 import WorkingDaysMain from "./WorkingDays/WorkingDaysMain";
@@ -55,13 +57,17 @@ function App() {
             <Route path="/SubjectStats" component={SubjectStat}/>
 
 
-            {/*Lecturers & Subjects*/}
-          <Route path="/LecHome" component={LecturerHomePage}/>
-          <Route path="/AddLec" component={AddLecturerDetails}/>
-          <Route path="/ViewLec" component={ViewLecturerDetails}/>
-          <Route path="/SubHome" component={SubjectHomePage}/>
-          <Route path="/AddSub" component={AddSubjectDetails}/>
-          <Route path="/ViewSub" component={ViewSubjectDetails}/>
+            {/*Lecturers*/}
+            <Route path="/LecHome" component={LecturerHomePage}/>
+            <Route path="/AddLec" component={AddLecturerDetails}/>
+            <Route path="/ViewLec" component={ViewLecturerDetails}/>
+            <Route path="/UpdateLec/:id" component={EditLecturerDetails}/>
+
+            {/*Subjects*/}
+            <Route path="/SubHome" component={SubjectHomePage}/>
+            <Route path="/AddSub" component={AddSubjectDetails}/>
+            <Route path="/ViewSub" component={ViewSubjectDetails}/>
+            <Route path="/UpdateSub/:id" component={EditSubjectDetails}/>
 
             {/*Working Days*/}
           <Route path="/WorkingDaysMain" component={WorkingDaysMain}/>
