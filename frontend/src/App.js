@@ -37,7 +37,9 @@ import AddStudent from "./Student/AddStudentData";
 import ViewStudent from "./Student/ViewStudent";
 import UpdateStudent from "./Student/EditStudentData";
 
-
+//Session
+import AddSession from "./Session/AddSession";
+import ViewSession from "./Session/ViewSession";
 
 function App() {
   return (
@@ -68,6 +70,10 @@ function App() {
             <Route path="/AddSub" component={AddSubjectDetails}/>
             <Route path="/ViewSub" component={ViewSubjectDetails}/>
             <Route path="/UpdateSub/:id" component={EditSubjectDetails}/>
+
+            {/*Sessions*/}
+            <Route path="/AddSession" component={AddSession}/>
+            <Route path="/ViewSession" component={ViewSession}/>
 
             {/*Working Days*/}
           <Route path="/WorkingDaysMain" component={WorkingDaysMain}/>

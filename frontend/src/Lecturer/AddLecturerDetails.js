@@ -129,7 +129,7 @@ export default class AddLecturerDetails extends Component{
             this.state.Lecturers.map(lec => {
                 if (lec.empID === this.state.empID) {
                     valid = false;
-                    alert("Building already exists")
+                    alert("Lecturer already exists")
                 }
             })
         }
@@ -178,7 +178,6 @@ export default class AddLecturerDetails extends Component{
                 <LecNav/><br/>
                 <h3>Add Lecturer Details</h3>
                 <div className="form">
-
                     <form onSubmit={this.AddLecturer}>
                         <div className="form-group mx-sm-3 mb-2">
                             <label

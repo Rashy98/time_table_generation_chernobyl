@@ -20,6 +20,8 @@ const AddLecturer = require('../backend/routes/lecturer');
 const Department = require('../backend/routes/departments');
 const AddSubject = require('../backend/routes/subject');
 const Student = require('../backend/routes/students');
+const Session = require('../backend/routes/session');
+const GenSession = require('../backend/routes/generatedSession');
 
 app.use('/workingdays', require('../backend/routes/workingDays'));
 app.use('/building', Building);
@@ -29,6 +31,8 @@ app.use('/students', AddStudent);
 app.use('/lecturer', AddLecturer);
 app.use('/subject', AddSubject);
 app.use('/department',Department);
+app.use('/session',Session);
+app.use('/generatedSession',GenSession);
 
 
 const uri = process.env.ATLAS_URI;
