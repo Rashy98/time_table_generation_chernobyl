@@ -259,7 +259,7 @@ export default class AddSession extends Component{
                                 <div>
                                     <select
                                         id="subject"
-                                        style={{fontSize: '16px', color: "mediumslateblue", height: "34px", width: "890px", borderColor: "white",borderRadius: "3px"}}
+                                        style={{fontSize: '16px', color: "mediumslateblue", borderColor: "white",borderRadius: "3px", width:'91%'}}
                                         value={lec.name}
                                         onChange={this.handleLecNameChange(idx)}
                                         required>

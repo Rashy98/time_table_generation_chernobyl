@@ -358,7 +358,7 @@ export default class StudentStats extends Component{
                     <br /> <br/>
                         <div className="row">
                         <div className="col statistics">
-                            <h3>Groups per semester</h3>
+                            <h3>Groups per year according to specialization</h3>
                             {this.state.years.map((y,index) =>{
                                 return(
                                     <div className="form-check form-check-inline mx-sm-3 mb-2">
@@ -376,7 +376,7 @@ export default class StudentStats extends Component{
                             <Pie data={this.state.groupsPerSpe} />
                         </div>
                             <div className="col ml-3 statistics">
-                                <h3>Groups in each faculty</h3>
+                                <h3>Groups in each faculty according to the specialization</h3>
                                 {this.state.faculty.map((x,index) =>{
                                     return(
                                         <div className="form-check form-check-inline mx-sm-3 mb-2">

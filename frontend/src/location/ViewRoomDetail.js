@@ -87,7 +87,7 @@ class ViewRoomDetail extends Component {
 
                 <Container>
                     <h3>View Room Details</h3>
-                    <Table responsive>
+                    <Table responsive className='table-striped bg-light'>
                         <thead>
                         {this.state.loading ? <center><Spinner animation="border" /></center> :
                             <tr>

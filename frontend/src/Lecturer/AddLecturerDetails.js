@@ -148,7 +148,8 @@ export default class AddLecturerDetails extends Component{
                 center: this.state.center,
                 building: this.state.building,
                 level: this.state.level,
-                rank: this.state.rank
+                rank: this.state.rank,
+                rooms:[]
             }
             //console.log(this.state.lecture);
             axios.post("/lecturer/addLec", lecturer)

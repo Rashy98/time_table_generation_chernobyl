@@ -8,29 +8,7 @@ import axios from 'axios';
 // import {connect} from "react-redux";
 
 
-const Building = props => (
 
-    <tr>
-        {/*{props.editables === true ?*/}
-        {/*    <td><input type='text'>{props.building._id}</input></td>:*/}
-            <td>{props.building.building}</td>
-        {/*}*/}
-
-        <td>
-            <button className="btn my-1" ><Link style={{color:"lavender"}}
-                // to={"/EditCategory/"+props.category._id}
-                onClick={props.EditBuilding}
-            >Edit</Link></button>
-            &nbsp;
-        <button className="btn my-1">
-
-            <a href="#" style={{color:"lavender"}}
-               onClick={() => {props.RemoveBuilding(props.building._id)}}
-            >
-                Delete</a></button>
-        </td>
-    </tr>
-)
 
 
 class ViewBuilding extends Component {
@@ -39,18 +17,36 @@ class ViewBuilding extends Component {
 
         this.RemoveBuilding = this.RemoveBuilding.bind(this);
         this.editableChange = this.editableChange.bind(this);
+        this.UpdateBuilding = this.UpdateBuilding.bind(this);
+        this.onChangeBuilding = this.onChangeBuilding.bind(this);
 
         this.state = {
             buildings: [],
+            building:"",
             loading: true,
-            editable: true
+            selectedB:"",
+            editedB:"",
+            Bid:"",
+            editable: false
         };
 
     }
 
-    editableChange(){
+    onChangeBuilding(e){
         this.setState({
-            editable:true
+            building: e.target.value
+        })
+    }
+
+    editableChange(id){
+
+        this.state.buildings.map((b,index) =>{
+            if(index === id){
+                this.setState({
+                    building: b.building,
+                    Bid:index
+                })
+            }
         })
         console.log(this.state.editable)
     }
@@ -69,6 +65,7 @@ class ViewBuilding extends Component {
             })
 
 
+
     }
 
     RemoveBuilding(id) {
@@ -80,12 +77,31 @@ class ViewBuilding extends Component {
         })
     }
 
-   BuildingList() {
-        return this.state.buildings.map(building => {
-            return <Building building={building} RemoveBuilding={this.RemoveBuilding}
-                             key={building._id} editables={this.state.editable} EditBuilding={this.editableChange}/>;
-        })
-    }
+   UpdateBuilding(id) {
+       // e.preventDefault();
+       // if (this.handleRoomValidation()) {
+           const build = {
+               building: this.state.building,
+           }
+           axios.post("/building/update/" +id, build)
+               .then(res => console.log(res.data));
+
+           alert('Building Updated!');
+           axios.get('/building/')
+               .then(response => {
+                   this.setState({
+                       buildings: response.data,
+                       loading:false
+                   })
+                   console.log(response.data);
+
+               })
+               .catch((error) => {
+                   console.log(error);
+               })
+           // window.location = '/ViewRoom';
+       // }
+   }
 
     render() {
 
@@ -96,7 +112,7 @@ class ViewBuilding extends Component {
                     <Container >
                             <h3>View Location</h3>
 
-                        <Table responsive>
+                        <Table responsive className="table-striped">
                             <thead style={{backgroundColor:"#312450",color:'white'}}>
                             {this.state.loading ? <center><Spinner animation="border" /></center> :
                                 <tr>
@@ -105,15 +121,56 @@ class ViewBuilding extends Component {
                                 </tr>
                             }
                             </thead>
+
+                            {this.state.buildings.map((build,index) => {
+                                return(
+
                             <tbody>
-                            {this.BuildingList()}
+                                <tr>
+                                    <td>{build.building}</td>
+
+
+
+                                        <td>
+                                            <button className="btn my-1">
+                                                <Link style={{color: "lavender"}}
+                                                      onClick={()=>this.editableChange(index)}>
+                                                    Edit
+                                                </Link>
+                                            </button>
+                                            &nbsp;
+                                            <button className="btn my-1">
+
+                                                <a href="#" style={{color: "lavender"}}
+                                                   onClick={() => {
+                                                       this.RemoveBuilding(build._id)
+                                                   }}
+                                                >
+                                                    Delete</a></button>
+
+                                        </td>
+                                </tr>
                             </tbody>
+                                )})}
                         </Table>
+
+                        <div className='form'>
+                            <h6>Update Building</h6>
+                            <input type='text' value={this.state.building} className='form-control-sm' onChange={this.onChangeBuilding}></input>
+                            &nbsp;
+                            <button className="btn my-1">
+                                <Link style={{color: "lavender"}}
+                                      onClick={()=>this.UpdateBuilding(this.state.Bid)}>Update
+                                </Link>
+                            </button>
+                        </div>
+
                     </Container>
 
 
 
                 </div>
+
             );
     }
 }

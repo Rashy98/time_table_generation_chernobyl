@@ -3,6 +3,7 @@ import workingDays from "../assets/css/workingdays.css";
 import WorkingDaysNav from "./Common/ViewWorkingDaysNav";
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
+import WorkNav from "./Common/workingMainNav";
 
 class ViewWeekdayWorkingDays extends Component{
 
@@ -97,9 +98,11 @@ class ViewWeekdayWorkingDays extends Component{
 
         return (
             <div className="main">
-                <WorkingDaysNav/>
-                <h3>Weekday</h3>
+                <WorkNav/>
+
                 <div className="form">
+                    <WorkingDaysNav/>
+                    <h3>Weekday</h3>
                     <table style={{width:"100%"}}>
                         {/* ---------------------------------------------------------------------------------------- */}
                         {/* ----------------------------      No.of Working Days     ------------------------------- */}

@@ -28,6 +28,9 @@ const StudentSchema = new schema({
         required: true,
         unique:true,
 
+    },
+    rooms:{
+        type:Array
     }
 });
 

@@ -294,7 +294,7 @@ export default class LecturerStats extends Component{
                                  }}/>
                         </div>
                             <div className="col ml-3 statistics">
-                                <h3>Lecturers per faculty</h3>
+                                <h3>Lecturer count by faculty</h3>
                                 <Pie data={this.state.lecPerFac} />
                             </div>
                         </div>
@@ -305,7 +305,7 @@ export default class LecturerStats extends Component{
                             <Pie data={this.state.lecByCenter} />
                         </div>
                         <div className="col statistics ml-3">
-                            <h3>Lecturers per department</h3>
+                            <h3>Lecturer count by the department</h3>
                                 <h6>Please Select a Faculty</h6>
                                 {this.state.faculties.map((lec,index) =>{
                                    return(

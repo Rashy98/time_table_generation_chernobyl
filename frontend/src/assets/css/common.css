@@ -42,6 +42,14 @@ table td{
     font-size: 18px;
 }
 
+.table-striped tr:nth-child(2n+2){
+    background-color:lavender;
+}
+
+/*.table-striped tr:nth-child(2n+1){*/
+/*    background-color:lavender;*/
+/*}*/
+
 .statistics{
     background-color: lavender;
     /*border: 2px;*/

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "main": "public/main.js",
+  "homepage": "./",
+  "author": "Chernobyl",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -28,7 +30,40 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\""
+    "electron-dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-pack": "npm build --em.main=build/public/main.js",
+    "postinstall": "install-app-deps",
+    "pack": "build --dir",
+    "dist": "build",
+    "preelectron-pack": "npm build"
+  },
+  "build": {
+    "appId": "Time_Table_Genration",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/favicon.ico"
+    }
+
   },
   "proxy": "http://localhost:8000",
   "eslintConfig": {
@@ -48,6 +83,7 @@
   },
   "devDependencies": {
     "bootstrap-select-dropdown": "^0.14.6",
-    "electron": "^9.1.1"
+    "electron": "^9.1.1",
+    "electron-builder": "^22.8.0"
   }
 }

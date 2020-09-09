@@ -82,8 +82,8 @@ class ViewSubjectDetails extends Component {
                 <SubNav/><br/>
                 <Container>
                         <h3> Subject Details </h3><br/>
-                        <Table responsive style={{bgColor:"lavender",width:'100%'}}>
-                            <thead className="thead-light">
+                        <Table responsive className='table-striped'>
+                            <thead>
                             {this.state.loading ? <center><Spinner animation="border" /></center> :
                                 <tr>
                                     <th style={{fontSize: '15px'}}>Offered Year</th>

@@ -13,7 +13,7 @@ export default class LocNav extends Component{
                    className="navbar__link">
                     Add Building and Room
                 </NavLink>
-                <NavLink to="/ViewLocation"
+                <NavLink to="/ViewBuilding"
                          activeClassName="navbar__link--active"
                          className="navbar__link">
                     View Building Data

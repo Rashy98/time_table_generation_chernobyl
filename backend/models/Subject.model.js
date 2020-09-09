@@ -42,6 +42,9 @@ const SubjectSchema = new schema({
     eveHr : {
         type: Number,
         required: true
+    },
+    rooms:{
+        type:Array
     }
 });
 

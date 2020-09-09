@@ -57,4 +57,20 @@ router.route('/update/:id').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/pushTimes').post(function (req,res){
+    Room.findOneAndUpdate(
+        { _id: req.body._id },
+        {
+            $push: {
+                Unavailable: req.body.Unavailable
+            },
+        }
+    )
+        .then(doc => {
+            res.send(doc);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+});
 module.exports = router;

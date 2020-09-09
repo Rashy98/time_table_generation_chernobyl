@@ -86,4 +86,21 @@ router.route('/update/:id').post((req, res) => {
         .catch(err => res.status(400).json({success: false, err: err}));
 });
 
+router.route('/pushRooms').post(function (req,res){
+    Subject.findOneAndUpdate(
+        { _id: req.body._id },
+        {
+            $push: {
+                rooms: req.body.rooms
+            },
+        }
+    )
+        .then(doc => {
+            res.send(doc);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+});
+
 module.exports = router;
