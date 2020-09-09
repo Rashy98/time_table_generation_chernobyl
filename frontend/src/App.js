@@ -37,6 +37,12 @@ import AddStudent from "./Student/AddStudentData";
 import ViewStudent from "./Student/ViewStudent";
 import UpdateStudent from "./Student/EditStudentData";
 
+//Time Allocation
+import NotAvailable from "./TimeAllocation/NotAvailable";
+import ConsecutiveSessions from "./TimeAllocation/ConsecutiveSessions";
+import ParallelSessions from "./TimeAllocation/ParallelSessions";
+import OverlapSessions from "./TimeAllocation/OverlapSessions";
+
 //Session
 import AddSession from "./Session/AddSession";
 import ViewSession from "./Session/ViewSession";
@@ -92,6 +98,12 @@ function App() {
           <Route path="/AddStudent" component={AddStudent}/>
           <Route path="/ViewStudent" component={ViewStudent}/>
           <Route path="/UpdateGroup" component={UpdateStudent}/>
+
+            {/*TimeAllocation*/}
+            <Route path="/NotAvailable" component={NotAvailable}/>
+            <Route path="/ConsecutiveSessions" component={ConsecutiveSessions}/>
+            <Route path="/ParallelSessions" component={ParallelSessions}/>
+            <Route path="/OverlapSessions" component={OverlapSessions}/>
 
         </switch>
       </Router>
