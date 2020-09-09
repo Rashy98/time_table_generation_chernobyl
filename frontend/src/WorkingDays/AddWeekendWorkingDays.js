@@ -3,6 +3,7 @@ import workingDays from "../assets/css/workingdays.css";
 import WorkingDaysNav from "./Common/AddWorkingDaysNav";
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
+import WorkNav from "./Common/workingMainNav";
 
 class AddWeekendWorkingDays extends Component{
 
@@ -158,8 +159,9 @@ class AddWeekendWorkingDays extends Component{
     render() {
             return (
                 <div className="main">
-                    <WorkingDaysNav/>
+                    <WorkNav/>
                     <div className="form">
+                        <WorkingDaysNav/>
                         <h3>{this.state.edit? "Update" : "Add"} Weekend</h3>
                         <br/>
                         <form onSubmit = {this.onSubmit}>

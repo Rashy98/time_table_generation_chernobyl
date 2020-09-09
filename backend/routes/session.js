@@ -37,6 +37,23 @@ router.route('/addSession').post((req, res) => {
         .catch(err => res.status(400).json({success: false, err: err}));
 });
 
+
+router.route('/pushRooms').post(function (req,res){
+    Session.findOneAndUpdate(
+        { _id: req.body._id },
+        {
+            $push: {
+                Rooms: req.body.rooms
+            },
+        }
+    )
+        .then(doc => {
+            res.send(doc);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+});
 // router.route('/getSessionBySubName').get((req, res) =>{
 //
 //     Session.findOne({SubName: req.body.SubName})

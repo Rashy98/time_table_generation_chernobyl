@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
+import Main from "./Common/HomePage"
 import AddLocationData from "./location/AddLocationData";
 import NavBar from "./Common/Navbar";
 import StudentStats from "./Statistics/StudentStats";
@@ -9,6 +10,7 @@ import ViewRoomDetails from "./location/ViewRoomDetail";
 import SubjectStat from "./Statistics/SubjectStat";
 import LecturerStats from "./Statistics/LectureStats";
 import EditRoom from "./location/EditRoom";
+import ViewBuildings from "./location/ViewBuildings";
 
 //Lecturer
 import LecturerHomePage from "./Lecturer/LecturerHomePage";
@@ -41,22 +43,31 @@ import UpdateStudent from "./Student/EditStudentData";
 import AddSession from "./Session/AddSession";
 import ViewSession from "./Session/ViewSession";
 
+//Room allocation
+import TagOnly from "./RoomAllocation/TagOnly";
+import TagAndSub from "./RoomAllocation/Tag&Sub";
+import RoomAllocationMain from "./RoomAllocation/RoomAllocationMain";
+import UnavailableTimes from "./RoomAllocation/UnavailableTimes";
+
 function App() {
   return (
       <Router>
         <NavBar/>
         <switch>
+            <Route path="/" exact component={Main}/>
 
             {/*Location*/}
             <Route path="/AddLocation" exact component={AddLocationData} />
             <Route path="/ViewLocation" component={ViewLocation}/>
             <Route path="/ViewRoom" component={ViewRoomDetails}/>
             <Route path="/UpdateRoom/:id" component={EditRoom}/>
+            <Route path="/ViewBuilding" component={ViewBuildings}/>
 
             {/*Statistics*/}
             <Route path="/StuStats" component={StudentStats}/>
             <Route path="/LecturerStats" component={LecturerStats}/>
             <Route path="/SubjectStats" component={SubjectStat}/>
+
 
 
             {/*Lecturers*/}
@@ -82,9 +93,6 @@ function App() {
           <Route path="/ViewWeekdayWorkingDays" component={ViewWeekdayWorkingDays}/>
           <Route path="/ViewWeekendWorkingDays" component={ViewWeekendWorkingDays}/>
 
-
-
-
            {/*TagsAndStudents*/}
           <Route path="/AddTag" component={AddTag}/>
           <Route path="/ViewTag" component={ViewTag}/>
@@ -92,6 +100,12 @@ function App() {
           <Route path="/AddStudent" component={AddStudent}/>
           <Route path="/ViewStudent" component={ViewStudent}/>
           <Route path="/UpdateGroup" component={UpdateStudent}/>
+
+          {/*RoomAllocation*/}
+          <Route path="/RoomAlMain" component={RoomAllocationMain}/>
+            <Route path="/RoomTag" component={TagOnly}/>
+            <Route path="/TagAndSub" component={TagAndSub}/>
+            <Route path="/UnAvailable" component={UnavailableTimes}/>
 
         </switch>
       </Router>

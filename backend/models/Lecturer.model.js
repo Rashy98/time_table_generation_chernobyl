@@ -35,6 +35,9 @@ const LecturerSchema = new schema({
     rank : {
         type: Number,
         required: true
+    },
+    rooms:{
+        type:Array
     }
 });
 

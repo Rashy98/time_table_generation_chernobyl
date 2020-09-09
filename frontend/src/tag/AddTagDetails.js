@@ -55,7 +55,8 @@ export default class AddTagDetails extends Component{
         e.preventDefault();
         if(this.handleValidation()) {
             const tag = {
-                tag: this.state.tag
+                tag: this.state.tag,
+                rooms:[]
             }
             console.log(this.state.tag);
             axios.post("/tag/add", tag)

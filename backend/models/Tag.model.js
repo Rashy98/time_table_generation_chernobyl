@@ -7,6 +7,10 @@ const TagSchema = new schema({
         type: String,
         required: true,
         unique:true,
+    },
+    rooms:{
+        type:Array,
+        unique: true
     }
 });
 

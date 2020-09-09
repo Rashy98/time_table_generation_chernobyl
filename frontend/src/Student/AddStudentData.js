@@ -85,7 +85,8 @@ export default class AddStudentData extends Component{
                 programme: this.state.programme,
                 groups: this.state.groups,
                 subgroup: this.state.subgroup,
-                groupId: this.state.year +"."+ this.state.programme +"."+ this.state.groups +"."+ this.state.subgroup
+                groupId: this.state.year +"."+ this.state.programme +"."+ this.state.groups +"."+ this.state.subgroup,
+                rooms:[],
 
             }
             console.log(this.state.student);
@@ -163,7 +164,7 @@ export default class AddStudentData extends Component{
                                    value={this.state.subgroup}/>
                         </div>
                         <button className="btn mb-2" style={{marginLeft: "40%",marginTop: "5%"}} onClick={this.AddStudent}>
-                            Add Tag
+                            Add Students
                         </button>
                     </form>
 

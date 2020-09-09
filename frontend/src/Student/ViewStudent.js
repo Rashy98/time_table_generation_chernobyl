@@ -89,8 +89,8 @@ class ViewStudent extends Component {
 
                 <Container>
                     <h3>View Student Details</h3><br/>
-                    <Table responsive style={{bgColor:"lavender"}}>
-                        <thead className="thead-light">
+                    <Table responsive className='table-striped'>
+                        <thead>
                         {this.state.loading ? <center><Spinner animation="border" /></center> :
                             <tr>
                                 <th>Year and Semester</th>

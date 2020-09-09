@@ -1,8 +1,10 @@
 import React,{Component} from "react";
 import workingDays from "../assets/css/workingdays.css";
 import WorkingDaysNav from "./Common/ViewWorkingDaysNav";
+import {Table} from "react-bootstrap";
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
+import WorkNav from "./Common/workingMainNav";
 
 class ViewWeekendWorkingDays extends Component{
 
@@ -95,10 +97,12 @@ class ViewWeekendWorkingDays extends Component{
     render() {
         return (
             <div className="main">
-                <WorkingDaysNav/>
-                <h3>Weekend</h3>
+                <WorkNav/>
+
                 <div className="form">
-                    <table style={{width:"100%"}}>
+                    <WorkingDaysNav/>
+                    <h3>Weekend</h3>
+                    <Table style={{width:"100%"}} className='table-striped '>
 
                         {/* ---------------------------------------------------------------------------------------- */}
                         {/* ----------------------------      No.of Working Days     ------------------------------- */}
@@ -108,6 +112,7 @@ class ViewWeekendWorkingDays extends Component{
                             <td style={{fontSize:"15px"}}>{this.state.noOfWorkingDays}</td>
                         </tr>
 
+                    <tr></tr>
                         {/* ---------------------------------------------------------------------------------------- */}
                         {/* ----------------------------      Working Days     ------------------------------------- */}
                         {/* ---------------------------------------------------------------------------------------- */}
@@ -131,7 +136,7 @@ class ViewWeekendWorkingDays extends Component{
                             <th style={{fontSize:"15px"}}>Time Slot</th>
                             <td style={{fontSize:"15px"}}>{this.state.timeSlot}</td>
                         </tr>
-                    </table>
+                    </Table>
                     <br/>
 
                     <div className="row">

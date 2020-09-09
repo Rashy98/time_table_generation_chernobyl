@@ -22,6 +22,9 @@ const RoomSchema = new schema({
         type: String,
         required: true,
         unique:true
+    },
+    Unavailable:{
+        type:Array
     }
 });
 
