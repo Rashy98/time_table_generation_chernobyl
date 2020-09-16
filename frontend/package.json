@@ -63,7 +63,6 @@
       "target": "squirrel",
       "icon": "build/favicon.ico"
     }
-
   },
   "proxy": "http://localhost:8000",
   "eslintConfig": {
