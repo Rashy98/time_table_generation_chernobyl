@@ -32,7 +32,7 @@ const SessionSchema = new schema({
         type: Number,
         required: true
     },
-    UnAvailableTime : {
+    times : {
         type: Array,
         default:[]
     },

@@ -129,7 +129,7 @@ export default class AddLecturerDetails extends Component{
             this.state.Lecturers.map(lec => {
                 if (lec.empID === this.state.empID) {
                     valid = false;
-                    alert("Lecturer already exists")
+                    alert("LecturerNA already exists")
                 }
             })
         }
@@ -149,7 +149,8 @@ export default class AddLecturerDetails extends Component{
                 building: this.state.building,
                 level: this.state.level,
                 rank: this.state.rank,
-                rooms:[]
+                rooms:[],
+                times:[]
             }
             //console.log(this.state.lecture);
             axios.post("/lecturer/addLec", lecturer)
@@ -166,10 +167,10 @@ export default class AddLecturerDetails extends Component{
                 level: "",
                 rank: ""
             })
-            alert("Lecturer Details added!")
+            alert("LecturerNA Details added!")
         }
         else{
-            alert("Lecturer Details not added!")
+            alert("LecturerNA Details not added!")
         }
     }
 

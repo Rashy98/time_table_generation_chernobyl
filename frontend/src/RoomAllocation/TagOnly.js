@@ -71,7 +71,9 @@ class TagOnly extends Component{
             .then(response => {
                 this.setState({
                     tags: response.data,
+
                 })
+
             })
         axios.get('/room/')
             .then(response => {

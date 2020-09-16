@@ -38,7 +38,7 @@ export default class NavBar extends Component{
                         <a className="nav-link " id="addSession" href="/AddSession">Sessions</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link " href="/ConsecutiveSessions">Time allocation</a>
+                        <a className="nav-link " href="/TimeAllocationMain">Time allocation</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link " href="/RoomAlMain" id="roomAl">Room allocation</a>

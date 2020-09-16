@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import location from "../assets/css/location.css"
 import stat from "../assets/css/stats.css";
-import TagNav from "./tagTime.js";
+import TagNav from "./timeNav.js";
 import axios from 'axios';
 
 

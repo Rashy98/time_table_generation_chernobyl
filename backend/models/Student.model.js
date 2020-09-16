@@ -31,6 +31,9 @@ const StudentSchema = new schema({
     },
     rooms:{
         type:Array
+    },
+    times:{
+        type:Array
     }
 });
 

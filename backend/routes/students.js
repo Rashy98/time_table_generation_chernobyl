@@ -74,5 +74,21 @@ router.route('/pushRooms').post(function (req,res){
             console.error(err);
         });
 });
+router.route('/pushTimes').post(function (req,res){
+    Student.findOneAndUpdate(
+        { _id: req.body._id },
+        {
+            $push: {
+                times: req.body.times
+            },
+        }
+    )
+        .then(doc => {
+            res.send(doc);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+});
 
 module.exports = router;

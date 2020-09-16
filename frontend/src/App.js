@@ -12,7 +12,7 @@ import LecturerStats from "./Statistics/LectureStats";
 import EditRoom from "./location/EditRoom";
 import ViewBuildings from "./location/ViewBuildings";
 
-//Lecturer
+//LecturerNA
 import LecturerHomePage from "./Lecturer/LecturerHomePage";
 import AddLecturerDetails from "./Lecturer/AddLecturerDetails";
 import ViewLecturerDetails from "./Lecturer/ViewLecturerDetails";
@@ -44,6 +44,12 @@ import NotAvailable from "./TimeAllocation/NotAvailable";
 import ConsecutiveSessions from "./TimeAllocation/ConsecutiveSessions";
 import ParallelSessions from "./TimeAllocation/ParallelSessions";
 import OverlapSessions from "./TimeAllocation/OverlapSessions";
+import LecturerNA from "./TimeAllocation/LecturerNA";
+import Session from "./TimeAllocation/SessionNA";
+import Group from "./TimeAllocation/GroupNA";
+import TimeAllocationMain from "./TimeAllocation/TimeAllocationMain";
+
+
 
 //Session
 import AddSession from "./Session/AddSession";
@@ -118,6 +124,10 @@ function App() {
             <Route path="/ConsecutiveSessions" component={ConsecutiveSessions}/>
             <Route path="/ParallelSessions" component={ParallelSessions}/>
             <Route path="/OverlapSessions" component={OverlapSessions}/>
+            <Route path="/LecturerNA" component={LecturerNA}/>
+            <Route path="/SessionNA" component={Session}/>
+            <Route path="/GroupNA" component={Group}/>
+            <Route path="/TimeAllocationMain" component={TimeAllocationMain}/>
 
         </switch>
       </Router>

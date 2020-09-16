@@ -26,7 +26,7 @@ router.route('/addSession').post((req, res) => {
          GroupOrSubGroupName: req.body.GroupOrSubGroupName,
          NoOfStudents: req.body.NoOfStudents,
          Duration:req.body.Duration,
-         UnAvailableTime:req.body.UnAvailableTime,
+         times:req.body.times,
          ConsecutiveSessionID:req.body.ConsecutiveSessionID,
          Rooms:req.body.Rooms
     });
@@ -44,6 +44,22 @@ router.route('/pushRooms').post(function (req,res){
         {
             $push: {
                 Rooms: req.body.rooms
+            },
+        }
+    )
+        .then(doc => {
+            res.send(doc);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+});
+router.route('/pushTimes').post(function (req,res){
+    Session.findOneAndUpdate(
+        { _id: req.body._id },
+        {
+            $push: {
+                times: req.body.times
             },
         }
     )

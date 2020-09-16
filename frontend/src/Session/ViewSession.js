@@ -46,11 +46,11 @@ class ViewSession extends Component{
                         <label style={{fontSize: '16px', color: "mediumslateblue"}} htmlFor="LecturerSelectForSearch">
                             <input
                                 type="radio"
-                                value="Lecturer"
+                                value="LecturerNA"
                                 checked={this.state.searchType === "Lecturer"}
                                 // onChange={this.onRadioBtnValueChange}
                             />
-                            Lecturer
+                            LecturerNA
                         </label> <t/>
                         <label style={{fontSize: '16px', color: "mediumslateblue"}} htmlFor="SubjectSelectForSearch">
                             <input

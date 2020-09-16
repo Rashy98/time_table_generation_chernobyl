@@ -138,7 +138,7 @@ class EditLecturerDetails extends Component{
             axios.post("/lecturer/update/"+this.props.match.params.id, Lec)
                 .then(res => console.log(res.data));
 
-            alert('Lecturer Details Updated!');
+            alert('LecturerNA Details Updated!');
             this.setState({
                 fullName: "",
                 faculty: "",

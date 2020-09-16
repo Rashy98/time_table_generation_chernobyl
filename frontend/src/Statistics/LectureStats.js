@@ -244,7 +244,7 @@ export default class LecturerStats extends Component{
             lecByDep : {
                 labels: Departments,
                 datasets: [{
-                    label:'Lecturer Count',
+                    label:'LecturerNA Count',
                     data:LecCounts,
 
                     backgroundColor: [

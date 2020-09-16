@@ -5,8 +5,8 @@ export default class LecNav extends Component{
     render() {
         return (
             <div>
-                {/*<a href="/AddLec">Add Lecturer Details</a>*/}
-                {/*<a href="/ViewLec">View Lecturer Details</a>*/}
+                {/*<a href="/AddLec">Add LecturerNA Details</a>*/}
+                {/*<a href="/ViewLec">View LecturerNA Details</a>*/}
                 <nav className="navbar">
                     <NavLink
                         exact
