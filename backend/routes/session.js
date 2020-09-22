@@ -28,6 +28,8 @@ router.route('/addSession').post((req, res) => {
          Duration:req.body.Duration,
          times:req.body.times,
          ConsecutiveSessionID:req.body.ConsecutiveSessionID,
+         ParallelSessionID:req.body.ParallelSessionID,
+         NoOverLapSessionID:req.body.NoOverLapSessionID,
          Rooms:req.body.Rooms
     });
     console.log(newSession);
@@ -69,6 +71,66 @@ router.route('/pushTimes').post(function (req,res){
         .catch(err => {
             console.error(err);
         });
+});
+router.route('/pushParSession').post(function (req,res){
+    Session.findById(req.body._id)
+        .then(session => {
+            session.ParallelSessionID = req.body.ParallelSessionID;
+            session.save()
+                .then(() => res.json('Session Details updated!'))
+                .catch(err => res.status(400).json({success: false, err: err}));
+        })
+        .catch(err => res.status(400).json({success: false, err: err}));
+});
+router.route('/pushParSession1').post(function (req,res){
+    Session.findById(req.body._id)
+        .then(session => {
+            session.ParallelSessionID = req.body.ParallelSessionID;
+            session.save()
+                .then(() => res.json('Session Details updated!'))
+                .catch(err => res.status(400).json({success: false, err: err}));
+        })
+        .catch(err => res.status(400).json({success: false, err: err}));
+});
+router.route('/pushConSession').post(function (req,res){
+    Session.findById(req.body._id)
+        .then(session => {
+            session.ConsecutiveSessionID = req.body.ConsecutiveSessionID;
+            session.save()
+                .then(() => res.json('Session Details updated!'))
+                .catch(err => res.status(400).json({success: false, err: err}));
+        })
+        .catch(err => res.status(400).json({success: false, err: err}));
+});
+router.route('/pushConSession1').post(function (req,res){
+    Session.findById(req.body._id)
+        .then(session => {
+            session.ConsecutiveSessionID = req.body.ConsecutiveSessionID;
+            session.save()
+                .then(() => res.json('Session Details updated!'))
+                .catch(err => res.status(400).json({success: false, err: err}));
+        })
+        .catch(err => res.status(400).json({success: false, err: err}));
+});
+router.route('/pushOvrSession').post(function (req,res){
+    Session.findById(req.body._id)
+        .then(session => {
+            session.NoOverLapSessionID = req.body.NoOverLapSessionID;
+            session.save()
+                .then(() => res.json('Session Details updated!'))
+                .catch(err => res.status(400).json({success: false, err: err}));
+        })
+        .catch(err => res.status(400).json({success: false, err: err}));
+});
+router.route('/pushOvrSession1').post(function (req,res){
+    Session.findById(req.body._id)
+        .then(session => {
+            session.NoOverLapSessionID = req.body.NoOverLapSessionID;
+            session.save()
+                .then(() => res.json('Session Details updated!'))
+                .catch(err => res.status(400).json({success: false, err: err}));
+        })
+        .catch(err => res.status(400).json({success: false, err: err}));
 });
 // router.route('/getSessionBySubName').get((req, res) =>{
 //

@@ -44,6 +44,14 @@ const SessionSchema = new schema({
         type: Array,
         default:[]
     },
+    ParallelSessionID :{
+        type: String,
+        default:""
+    },
+    NoOverLapSessionID :{
+        type: String,
+        default:""
+    }
 })
 
 const Session = mongoose.model('Session',SessionSchema);

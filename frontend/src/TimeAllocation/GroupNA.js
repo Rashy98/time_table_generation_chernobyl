@@ -115,6 +115,9 @@ class GroupNA extends Component{
 
         alert('Time Allocated!');
         this.setState({
+            selectedgroup:"",
+            day:"",
+            times:[{day:"", time:""}],
         })
 
     }

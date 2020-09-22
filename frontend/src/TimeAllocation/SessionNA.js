@@ -146,6 +146,10 @@ class LecturerNA extends Component{
 
         alert('Time Allocated!');
         this.setState({
+            selectedSession:"",
+            day:"",
+            times:[{day:"", time:""}],
+
         })
 
     }
@@ -176,6 +180,7 @@ class LecturerNA extends Component{
                                 )
                             })}
                         </select>
+
                     </form>
 
                     <form className='form-inline'>

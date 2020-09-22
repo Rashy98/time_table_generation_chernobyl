@@ -85,7 +85,8 @@ export default class AddTagDetails extends Component{
                             <label htmlFor="btagInput" className="sr-only">Tag</label>
                             <input type="text" className="form-control" id="tagInput" placeholder="Tag Name"
                                 //    value={this.state.tag}
-                                   onChange={this.onChangeTag}/>
+                                   onChange={this.onChangeTag}
+                                   required/>
                             <br/>
                             <p className='text-danger small'>{this.state.tagVal}</p>
                         </div>

@@ -12,103 +12,148 @@ class ConsecutiveSessions extends Component{
         this.state={
             rooms:[{room:""}],
             Newrooms:[],
-            session:"",
-            sessionss:[],
-            ConSessions:[],
+            tags:[],
+            psession1:"",
+            psession2:"",
+            sessions:[{session:""}],
+            secondsessions:[{session:""}],
+            sessionData:[],
             selectedTag:"",
 
         }
 
-        this.handleSessionNameChange = this.handleSessionNameChange.bind(this);
-        this.handleAddRooms = this.handleAddRooms.bind(this);
-        this.handleRemoveRoom = this.handleRemoveRoom.bind(this);
-        this.onChangeSessions = this.onChangeSessions.bind(this);
+        this.handleSessionsNameChange = this.handleSessionsNameChange.bind(this);
+        // this.handleAddSessions = this.handleAddSessions.bind(this);
+        // this.handleRemoveSession = this.handleRemoveSession.bind(this);
+        this.onChangeSession = this.onChangeSession.bind(this);
+        this.onChangeSession1 = this.onChangeSession1.bind(this);
         // this.onChangeTag = this.onChangeTag.bind(this);
-        // this.GetID = this.GetID.bind(this);
-        this.AddRoomAllocation = this.AddRoomAllocation.bind(this);
+        this.GetID = this.GetID.bind(this);
+        this.AddSessionAllocation = this.AddSessionAllocation.bind(this);
     }
 
-    handleSessionNameChange = idx => evt => {
-        const newSessions = this.state.sessions.map((Nsession, ridx) => {
+    handleSessionsNameChange = idx => evt => {
+        const newDay = this.state.sessoins.map((session, ridx) => {
             if (idx !== ridx)
-                return Nsession;
-            return { ...Nsession, session: evt.target.value };
+                return session;
+            return { ...session, session: evt.target.value };
         });
 
-        const news = this.state.newSessions.map((Nsession, ridx) => {
-            if (idx !== ridx)
-                return Nsession;
-            return { ...Nsession, room: evt.target.value };
-        });
+        this.setState({ sessoins: newDay });
+    };
 
-        this.setState({ sessions: newSessions });
+
+    onChangeSession(e) {
+        let index = e.target.selectedIndex;
+        let el = e.target.childNodes[index];
+        let selectedId = el.getAttribute('id');
+
+
         this.setState({
-            Newsessions:news
+            selectedSession: e.target.value,
+            S_session: e.target.value,
+            selectedID: selectedId,
+
         })
-    };
 
-    handleAddRooms = () => {
-        this.setState({
-            sessions: this.state.sessions.concat([{session:" " }])
-        });
-    };
+        console.log(selectedId, e.target.value)
 
-    handleRemoveRoom = idx => () => {
-        this.setState({
-            sessions: this.state.sessions.filter((s, ridx) => idx !== ridx)
-        });
-    };
+    }
+    onChangeSession1(e) {
+        let index1 = e.target.selectedIndex;
+        let el1 = e.target.childNodes[index1];
+        let selectedId1 = el1.getAttribute('id');
 
-    onChangeSessions(e){
+
         this.setState({
-            sessions: e.target.value
+            selectedSession1: e.target.value,
+            S_session1: e.target.value,
+            selectedID1: selectedId1,
+
         })
+
+        console.log(selectedId1, e.target.value)
+
+    }
+
+    selectedID(id){
+        this.setState(
+            {
+                selectedID : id
+            }
+        )
+    }
+    selectedID1(id){
+        this.setState(
+            {
+                selectedID1 : id
+            }
+        )
     }
 
 
     componentDidMount() {
-        axios.get('/session/viewSession')
+        axios.get('/generatedSession/viewGeneratedSession')
             .then(response => {
                 this.setState({
                     sessions: response.data,
+                    secondsessions:response.data,
+
+
                 })
+                console.log(this.state.sessions[0].GeneratedSession);
             })
+        axios.get('/session/viewSession')
+            .then(response => {
+                this.setState({sessData: response.data})
+                console.log(response.data);
+            })
+    }
+
+    GetID(){
+        let newSessions = [];
+        this.state.sessions.map(session =>{
+            newSessions.push(session.session);
+        })
+
+        return newSessions;
 
     }
 
-    // GetID(){
-    //     let newRooms = [];
-    //     this.state.rooms.map(room =>{
-    //         newRooms.push(room.room);
-    //     })
-    //
-    //     return newRooms;
-    //
-    // }
-
-    AddRoomAllocation(e) {
+    AddSessionAllocation(e) {
         e.preventDefault();
 
 
-        let tagId =  this.state.tags.map(tag=>{
-            if(tag.tag === this.state.selectedTag){
-                return tag._id
-            }
-        })
-        const rooms = {
-            _id:tagId,
-            rooms:  this.GetID()
+        // let tagId =  this.state.tags.map(tag=>{
+        //     if(tag.tag === this.state.selectedTag){
+        //         return tag._id
+        //     }
+        // })
+        const Consession = {
+            _id:this.state.selectedID,
+            ConsecutiveSessionID:  this.state.selectedID1
         }
-        console.log(rooms);
-        axios.post("/tag/pushRooms/",rooms)
+        const Consession1 = {
+            _id:this.state.selectedID1,
+            ConsecutiveSessionID:  this.state.selectedID
+        }
+
+        // const times = {
+        //     _id:sessionId,
+        //     times:  this.state.times
+        // }
+        console.log(Consession);
+        console.log(Consession1);
+        axios.post("/session/pushConSession/",Consession)
+            .then(res => console.log(res.data));
+        axios.post("/session/pushConSession1/",Consession1)
             .then(res => console.log(res.data));
 
-        alert('Rooms Allocated!');
+        alert('Consecutive Sessions Allocated!');
         this.setState({
-            selectedBuilding: '',
-            room: '',
-            capacity: 0,
-            type: ''
+            selectedSession:" ",
+            selectedSession1:" ",
+
         })
 
     }
@@ -120,67 +165,59 @@ class ConsecutiveSessions extends Component{
                 <h3> Consecutive Sessions Allocation</h3>
                 <div className="form">
 
-                <form className="form-inline">
+                    <form className="form-inline">
 
-                    <h5 className='mt-3'>Sellect a Session to Allocate</h5>
-                    <button id="add_field_button" className="btn btn-success"
-                            type='button'
-                            style={{width: '30px',
-                                height: '30px',
-                                padding: '2px',
-                                borderRadius: '15px',
-                                textAlign: 'center',
-                                fontSize: '15px',
-                                // lineHeight: '1.42857',
-                                marginLeft:'20px',
-                                marginTop:'10px',
+                        <h5 className='mt-3'>Select Sessions to Allocate</h5>
 
-                            }}
-                            onClick={this.handleAddRooms}
-                    >+
-                    </button>
-                </form>
-                {/*{this.state.sessions.map((session, idx) => (*/}
+                    </form>
+                    {/*{this.state.groups.map((group, idx) => (*/}
 
-                {/*    <div className="room">*/}
+                    <div className="room">
 
-                {/*        <form className="form-inline">*/}
+                        <form className="form-inline mt-2">
 
-                {/*            <select className="form-control rooms " id="room"*/}
-                {/*                    style={{width: "50%"}}*/}
-                {/*                    placeholder={`Room #${idx+1}`}*/}
-                {/*                    value={this.state.selectedSession}*/}
-                {/*                    onChange={this.onChangeSessions}*/}
-                {/*            >*/}
-                {/*                <option selected style={{fontSize: "15px"}}>Choose Session...</option>*/}
-                {/*                {this.state.groups.map(session =>{*/}
-                {/*                    return(*/}
-                {/*                        <option value={session.SubName}>{session.SubName}</option>*/}
-                {/*                    )*/}
-                {/*                })}*/}
+                            <select className="form-control w-100" id={this.state.selectedID}
+                                    value={this.state.selectedSession}
+                                    onChange={this.onChangeSession}>
+                                <option selected style={{fontSize: '15px'}}>Choose Session...</option>
+                                {this.state.sessions.map((sess,id) => {
+                                    return (
+                                        <option value={sess.GeneratedSession} id={sess.GeneratedSessionID}>
+                                            {sess.GeneratedSession}
+                                        </option>
+                                    )
+                                })}
+                            </select>
 
-                {/*            </select>*/}
 
-                {/*            &nbsp;*/}
-                {/*            <button*/}
-                {/*                type="button"*/}
-                {/*                onClick={this.handleRemoveRoom(idx)}*/}
-                {/*                className="btn btn-danger btn-sm"*/}
-                {/*            >*/}
-                {/*                X*/}
-                {/*            </button>*/}
-                {/*        </form>*/}
+                        </form>
+                        <form className="form-inline mt-2">
 
-                {/*    </div>*/}
-                {/*))}*/}
+                            <select className="form-control w-100" id={this.state.selectedID1}
+                                    value={this.state.selectedSession1}
+                                    onChange={this.onChangeSession1}>
+                                <option selected style={{fontSize: '15px'}}>Choose Session...</option>
+                                {this.state.secondsessions.map((tok,id) => {
+                                    return (
+                                        <option value={tok.GeneratedSession} id={tok.GeneratedSessionID}>
+                                            {tok.GeneratedSession}
+                                        </option>
+                                    )
+                                })}
+                            </select>
 
-                <br/>
-                <div className="form-group mx-sm-3 mb-2 text-center">
-                    <button type="submit" className="btn my-1" onClick={this.AddRoomAllocation}>
-                        Allocate Sessions
-                    </button>
+                        </form>
+
+                    </div>
+
+
+                    <br/>
+                    <div className="form-group mx-sm-3 mb-2 text-center">
+                        <button type="submit" className="btn my-1" onClick={this.AddSessionAllocation}>
+                            Allocate Sessions
+                        </button>
+                    </div>
                 </div>
-            </div>
             </div>
         );
     }

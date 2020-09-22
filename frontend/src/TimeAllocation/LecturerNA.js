@@ -127,6 +127,9 @@ class LecturerNA extends Component{
 
         alert('Time Allocated!');
         this.setState({
+            selectedlecturer:"",
+            day:"",
+            times:[{day:"", time:""}],
 
         })
 
@@ -151,6 +154,7 @@ class LecturerNA extends Component{
                                 placeholder='Lecturer'
                                 value={this.state.selectedlecturer}
                                 onChange={this.onChangeLecturers}
+                                required
                         >
                             <option selected style={{fontSize: "15px",width: "100%"}}>Choose Lecturer...</option>
                             {this.state.lecturers.map(lecturer =>{
