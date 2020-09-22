@@ -12,8 +12,9 @@ class UnavailableTimes extends Component {
             times: [{day: "", startTime: "", endTime: ""}],
             Newrooms: [],
             tags: [],
-            roomData: [],
+            unavailable: [],
             selectedTag: "",
+            roomData:[],
 
         }
 
@@ -77,12 +78,41 @@ class UnavailableTimes extends Component {
         this.setState({
             room: e.target.value
         })
+
+
+        this.state.roomData.map(room =>{
+            if(room.room === e.target.value){
+                console.log(room.room , e.target.value,room.Unavailable);
+                this.setState({
+                    unavailable: room.Unavailable
+                })
+
+            }
+        })
+        this.state.times.map(time =>{
+            console.log(time.startTime);
+        })
+
     }
 
     onChangeTag(e) {
         this.setState({
             selectedTag: e.target.value
         })
+    }
+
+    Validation(){
+        let valid = true;
+
+        this.state.unavailable.map(unavailable =>{
+            this.state.times.map(time =>{
+                if(time.day === unavailable.day && time.startTime === unavailable.startTime && time.endTime === unavailable.endTime){
+                    valid = false;
+                }
+            })
+        })
+
+        return valid;
     }
 
     componentDidMount() {
@@ -100,36 +130,35 @@ class UnavailableTimes extends Component {
             })
     }
 
-    // GetID(){
-    //     let newRooms = [];
-    //     this.state.room.map(room =>{
-    //         newRooms.push(room.room);
-    //     })
-    //
-    //     return newRooms;
-    //
-    // }
 
     AddRoomAllocation(e) {
         e.preventDefault();
 
-
-        let roomId = this.state.roomData.map(room => {
-            if (room.room === this.state.room) {
-                return room._id
+        if(this.Validation()) {
+            let roomId = this.state.roomData.map(room => {
+                if (room.room === this.state.room) {
+                    return room._id
+                }
+            })
+            const Unavailable = {
+                _id: roomId,
+                Unavailable: this.state.times
             }
-        })
-        const Unavailable = {
-            _id: roomId,
-            Unavailable: this.state.times
+            console.log(Unavailable);
+            axios.post("/room/pushTimes/", Unavailable)
+                .then(res => console.log(res.data));
+
+            alert('Rooms Allocated!');
+            this.setState({
+                rooms: [{room: ""}],
+                room: "",
+                times: [{day: "", startTime: "", endTime: ""}],
+                selectedTag: "",
+            })
         }
-        console.log(Unavailable);
-        axios.post("/room/pushTimes/", Unavailable)
-            .then(res => console.log(res.data));
-
-        alert('Rooms Allocated!');
-        this.setState({})
-
+        else {
+            alert('The times are already set as unavailable for '+this.state.room);
+        }
     }
 
     render() {

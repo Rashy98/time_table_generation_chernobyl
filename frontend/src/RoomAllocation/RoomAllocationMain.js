@@ -11,7 +11,7 @@ class RoomAllocationMain extends Component{
         super(props);
 
         this.state={
-            current: "Tag"
+            current: 'Tag'
         }
         this.onChangeRadioButton = this.onChangeRadioButton.bind(this);
     }
@@ -44,7 +44,7 @@ class RoomAllocationMain extends Component{
 
                 <h5>Select an option to allocate rooms : </h5>
                 <div className="form-check form-check-inline mx-sm-3 mb-2 mr-2">
-                    <input className="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio2" value="Tag" onChange={this.onChangeRadioButton}/>
+                    <input className="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio2" value="Tag" onChange={this.onChangeRadioButton} checked={this.state.current == 'Tag'}/>
                     <label className="form-check-label" htmlFor="inlineRadio2"  style={{fontSize: "16px",color: "#312450"}}>Tag</label>
                     &nbsp;&nbsp;
                     <input className="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio2" value="T&S" onChange={this.onChangeRadioButton}/>

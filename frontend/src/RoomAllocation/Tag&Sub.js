@@ -13,7 +13,8 @@ class TagAndSub extends Component{
             tags:[],
             roomData:[],
             selectedTag:"",
-            selectedSub:""
+            selectedSub:"",
+            roomsInDB:[],
 
         }
 
@@ -44,6 +45,10 @@ class TagAndSub extends Component{
         this.setState({
             Newrooms:newr
         })
+
+        console.log(this.state.roomsInDB);
+
+
     };
     handleTagsChange = evt => {
         const newTags = this.state.rooms.map((Nroom, ridx) => {
@@ -82,6 +87,36 @@ class TagAndSub extends Component{
         this.setState({
             selectedSub:e.target.value
         })
+
+        this.state.subjects.map(sub =>{
+            if(sub.subject === e.target.value) {
+                sub.rooms.map(subT =>{
+                    if(subT.tag === this.state.selectedTag){
+                        console.log(subT.room);
+                        this.setState(previousState => ({
+                            roomsInDB: [...previousState.roomsInDB, subT.room]
+                        }))
+
+                    }
+                })
+
+            }
+        })
+    }
+
+    Validation(){
+        let valid = true;
+
+        this.state.roomsInDB.map(room =>{
+            this.state.rooms.map(r =>{
+                if(room === r.room){
+                    console.log(room,r);
+                    valid = false;
+                }
+            })
+        })
+
+        return valid;
     }
 
     componentDidMount() {
@@ -119,28 +154,32 @@ class TagAndSub extends Component{
         e.preventDefault();
 
 
-        let subID =  this.state.subjects.map(sub=>{
-            if(sub.subject === this.state.selectedSub){
-                return sub._id
+        if(this.Validation()) {
+            let subID = this.state.subjects.map(sub => {
+                if (sub.subject === this.state.selectedSub) {
+                    return sub._id
+                }
+            })
+
+
+            const Subs = {
+                _id: subID,
+                rooms: this.state.rooms
             }
-        })
+            console.log(Subs);
+            axios.post("/subject/pushRooms/", Subs)
+                .then(res => console.log(res.data));
 
-
-        const Subs = {
-            _id:subID,
-            rooms:  this.state.rooms
+            alert('Rooms Allocated!');
+            this.setState({
+                rooms: [{tag: "", room: ""}],
+                selectedTag: "",
+                selectedSub: ""
+            })
         }
-        console.log(Subs);
-        axios.post("/subject/pushRooms/",Subs)
-            .then(res => console.log(res.data));
-
-        alert('Rooms Allocated!');
-        this.setState({
-            selectedBuilding: '',
-            room: '',
-            capacity: 0,
-            type: ''
-        })
+        else{
+            alert('One,some or all rooms are already allocated to '+this.state.selectedSub + "'s " +this.state.selectedTag);
+        }
 
     }
 
