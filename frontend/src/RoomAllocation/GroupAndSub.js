@@ -14,7 +14,8 @@ class GroupAndSub extends Component{
             roomData:[],
             selectedRadio:"Group",
             selectedTag:"",
-            selectedGrp:""
+            selectedGrp:"",
+            roomsInDB:[],
 
         }
 
@@ -74,6 +75,30 @@ class GroupAndSub extends Component{
         this.setState({
             selectedGrp:e.target.value
         })
+
+        this.state.students.map(st =>{
+            if(st.groupId === e.target.value || st.groupId.substring(0,11) === e.target.value || st.groupId.substring(0,10) === e.target.value){
+                this.setState({
+                    roomsInDB: st.rooms
+                })
+
+            }
+        })
+    }
+
+    Validation(){
+        let valid = true;
+
+        this.state.roomsInDB.map(room =>{
+            this.state.rooms.map(r =>{
+                if(room === r.room){
+                    console.log(room,r);
+                    valid = false;
+                }
+            })
+        })
+
+        return valid;
     }
 
     componentDidMount() {
@@ -89,12 +114,12 @@ class GroupAndSub extends Component{
                     roomData: response.data,
                 })
             })
-        axios.get('/subject/')
-            .then(response => {
-                this.setState({
-                    subjects: response.data,
-                })
-            })
+        // axios.get('/subject/')
+        //     .then(response => {
+        //         this.setState({
+        //             subjects: response.data,
+        //         })
+        //     })
     }
 
     GetID(){
@@ -116,27 +141,32 @@ class GroupAndSub extends Component{
     AddRoomAllocation(e) {
         e.preventDefault();
 
+        if(this.Validation()) {
 
-        let stId =  this.state.students.map(st=>{
-            if(st.groupId === this.state.selectedGrp || st.groupId.substring(0,11) === this.state.selectedGrp || st.groupId.substring(0,10) === this.state.selectedGrp){
-                return st._id
+            let stId = this.state.students.map(st => {
+                if (st.groupId === this.state.selectedGrp || st.groupId.substring(0, 11) === this.state.selectedGrp || st.groupId.substring(0, 10) === this.state.selectedGrp) {
+                    return st._id
+                }
+            })
+            const rooms = {
+                _id: stId,
+                rooms: this.GetID()
             }
-        })
-        const rooms = {
-            _id:stId,
-            rooms:  this.GetID()
-        }
-        console.log(rooms);
-        axios.post("/students/pushRooms/",rooms)
-            .then(res => console.log(res.data));
+            console.log(rooms);
+            axios.post("/students/pushRooms/", rooms)
+                .then(res => console.log(res.data));
 
-        alert('Rooms Allocated!');
-        this.setState({
-            selectedBuilding: '',
-            room: '',
-            capacity: 0,
-            type: ''
-        })
+            alert('Rooms Allocated!');
+            this.setState({
+                rooms: [{room: ""}],
+                selectedRadio: "Group",
+                selectedTag: "",
+                selectedGrp: ""
+            })
+        }
+        else{
+            alert('One,some or all rooms are already allocated to the Group');
+        }
 
     }
 
@@ -147,7 +177,7 @@ class GroupAndSub extends Component{
                 <h5 className="mt-3">Group or Subgroup</h5>
 
                 <div className="form-check form-check-inline mx-sm-3 mb-2 mr-2">
-                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio" value="Group" onChange={this.onChangeRadioButton}/>
+                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio" value="Group" onChange={this.onChangeRadioButton} checked={this.state.selectedRadio == 'Group'}/>
                     <label className="form-check-label" htmlFor="inlineRadio"  style={{fontSize: "16px",color:"mediumslateblue"}}>Group</label>
                     &nbsp;&nbsp;
                     <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio" value="Subgroup" onChange={this.onChangeRadioButton}/>

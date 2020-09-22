@@ -255,7 +255,6 @@ export default class AddSession extends Component{
                             </label>
 
                             {this.state.LecName.map((lec, idx) => (
-
                                 <div>
                                     <select
                                         id="subject"

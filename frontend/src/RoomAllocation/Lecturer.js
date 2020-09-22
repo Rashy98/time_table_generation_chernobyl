@@ -12,7 +12,8 @@ class LecturerRoomAll extends Component{
             lecturers:[],
             roomData:[],
             selectedLecturer:"",
-
+            roomsInDB:[],
+            valid: false,
 
         }
 
@@ -42,6 +43,8 @@ class LecturerRoomAll extends Component{
         this.setState({
             Newrooms:newr
         })
+
+        console.log(this.state.roomsInDB);
     };
 
     handleAddRooms = () => {
@@ -60,10 +63,20 @@ class LecturerRoomAll extends Component{
         this.setState({
             rooms: e.target.value
         })
+
     }
     onChangeLec(e){
         this.setState({
             selectedLecturer:e.target.value
+        })
+
+        this.state.lecturers.map(lec =>{
+            if(lec.fullName === e.target.value){
+                this.setState({
+                    roomsInDB: lec.rooms
+                })
+
+            }
         })
     }
 
@@ -94,30 +107,49 @@ class LecturerRoomAll extends Component{
 
     }
 
+    Validation(){
+        let valid = true;
+
+            this.state.roomsInDB.map(room =>{
+                this.state.rooms.map(r =>{
+                    if(room === r.room){
+                        console.log(room,r);
+                        valid = false;
+                    }
+                })
+            })
+
+        return valid;
+    }
     AddRoomAllocation(e) {
         e.preventDefault();
 
+        // console.log(this.Validation());
 
-        let lecId =  this.state.lecturers.map(lec=>{
-            if(lec.fullName === this.state.selectedLecturer){
-                return lec._id
+        if(this.Validation()) {
+
+            let lecId = this.state.lecturers.map(lec => {
+                if (lec.fullName === this.state.selectedLecturer) {
+                    return lec._id
+                }
+            })
+            const rooms = {
+                _id: lecId,
+                rooms: this.GetID()
             }
-        })
-        const rooms = {
-            _id:lecId,
-            rooms:  this.GetID()
-        }
-        console.log(rooms);
-        axios.post("/lecturer/pushRooms/",rooms)
-            .then(res => console.log(res.data));
+            console.log(rooms);
+            axios.post("/lecturer/pushRooms/", rooms)
+                .then(res => console.log(res.data));
 
-        alert('Rooms Allocated!');
-        this.setState({
-            selectedBuilding: '',
-            room: '',
-            capacity: 0,
-            type: ''
-        })
+            alert('Rooms Allocated!');
+            this.setState({
+                rooms: [{room: ""}],
+                selectedLecturer: "",
+            })
+        }
+        else{
+            alert('One,some or all rooms are already allocated to the lecturer');
+        }
 
     }
 

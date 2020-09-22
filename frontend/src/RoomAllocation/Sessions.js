@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import axios from "axios";
+import {Row,Col,Container} from 'react-bootstrap';
 import mongoose from "mongoose"
 
 import RoomAllocationMain from "./RoomAllocationMain";
@@ -11,16 +12,23 @@ class SessionRoomAll extends Component{
 
         this.state={
             rooms:[{room:""}],
+            valRooms :[],
             Newrooms:[],
             lecturers:[],
             sessions:[],
             roomData:[],
             selectedSession:"",
             selectedID:any,
-            S_session:any,
+            S_session:"",
             selectedDSession:"",
             genSessions:[],
             sessData:[],
+            consSession :"",
+            consectID:any,
+            selectedSess:"",
+            roomsInDB:[],
+
+
 
 
 
@@ -35,6 +43,7 @@ class SessionRoomAll extends Component{
         this.GetID = this.GetID.bind(this);
         this.AddRoomAllocation = this.AddRoomAllocation.bind(this);
         this.selectedID= this.selectedID.bind(this);
+        this.setData = this.setData.bind(this);
     }
 
     handleRoomsNameChange = idx => evt => {
@@ -78,10 +87,40 @@ class SessionRoomAll extends Component{
             selectedTag:e.target.value
         })
     }
-    onChangeSession (e){
+     onChangeSession (e){
         let index = e.target.selectedIndex;
         let el = e.target.childNodes[index]
         let selectedId=  el.getAttribute('id');
+
+
+        this.state.sessData.map(session =>{
+            if(session._id === selectedId){
+                if(session.ConsecutiveSessionID  !==""){
+                    this.state.sessData.map(consS =>{
+                        if(consS._id === session.ConsecutiveSessionID){
+                            this.state.sessions.map(gen =>{
+                                if(gen.GeneratedSessionID === consS._id) {
+                                    this.setData(gen.GeneratedSession,gen.GeneratedSessionID);
+                                }
+
+                            })
+                            }
+
+                            }
+
+                            )
+
+                        }
+                else{
+                    this.setState({
+                        consSession:"",
+                        consectID:any
+                    })
+                }
+                    }
+        })
+
+        // console.log(this.state.actualID);
 
         this.setState({
             selectedSession:e.target.value,
@@ -89,7 +128,35 @@ class SessionRoomAll extends Component{
             selectedID:selectedId
         })
 
+         this.state.sessData.map(session =>{
+             if(session._id === selectedId){
+                 this.setState({
+                     roomsInDB: session.Rooms,
+
+                 })
+
+             }
+         })
+
         console.log(selectedId,e.target.value)
+    }
+
+    setData(a,b){
+
+        // console.log('SetData : '+ a,b);
+        console.log('Consession :'+a);
+        console.log('conId :'+b);
+
+        this.state.sessions.map(session =>{
+            if(b === session.GeneratedSessionID){
+                console.log(session.GeneratedSession);
+                this.setState({
+                    consSession:session.GeneratedSession,
+                    consectID:session.GeneratedSessionID
+                })
+            }
+
+        })
     }
     selectedID(id){
         this.setState(
@@ -97,6 +164,23 @@ class SessionRoomAll extends Component{
                 selectedID : id
             }
         )
+    }
+
+
+    Validation(){
+        let valid = true;
+
+        this.state.roomsInDB.map(room =>{
+            this.state.rooms.map(r =>{
+                if(room === r.room){
+                    console.log(room,r);
+                    valid = false;
+
+                }
+            })
+        })
+
+        return valid;
     }
 
     componentDidMount() {
@@ -107,7 +191,7 @@ class SessionRoomAll extends Component{
 
 
                 })
-                console.log(this.state.sessions[0].GeneratedSession);
+
             })
         axios.get('/session/viewSession')
             .then(response => {
@@ -140,29 +224,39 @@ class SessionRoomAll extends Component{
         e.preventDefault();
 
 
-        let sessId =  this.state.sessions.map(session=>{
-            console.log(session.GeneratedSession, this.state.selectedSession)
-            if(session.GeneratedSession === this.state.selectedSession){
+       if(this.Validation()) {
 
-                return session.GeneratedSessionID
-            }
-        })
+           console.log(this.state.selectedID);
+           const rooms = {
+               _id: this.state.selectedID,
+               rooms: this.GetID()
+           }
 
-        console.log(this.state.selectedID);
-        const rooms = {
-            _id:this.state.selectedID,
-            rooms:  this.GetID()
-        }
-        console.log(rooms);
+           const conRooms = {
+               _id: this.state.consectID,
+               rooms: this.GetID()
+           }
+           console.log(rooms);
 
-        axios.post("/session/pushRooms/",rooms)
-            .then(res => console.log(res.data));
+           axios.post("/session/pushRooms/", rooms)
+               .then(res => console.log(res.data));
+           axios.post("/session/pushRooms/", conRooms)
+               .then(res => console.log(res.data));
 
-        alert('Rooms Allocated!');
-        this.setState({
-            selectedSession:"",
-            newRooms:[]
-        })
+           alert('Rooms Allocated!');
+           this.setState({
+               selectedSession: "",
+               rooms: [{room: ""}],
+               S_session: "",
+               consSession: "",
+
+           })
+       }
+       else{
+
+               alert('One,some or all rooms are already allocated to the session/sessions');
+
+       }
 
     }
 
@@ -188,13 +282,20 @@ class SessionRoomAll extends Component{
 
 
 
-                {/*{console.log(this.state.selectedSession)}*/}
+                {console.log("Consecutive "+this.state.consSession)}
+                {console.log("selected"+this.state.S_session)}
+                <Container>
+                    <Row>
+                        <Col> <h5 className='mt-4'>Selected Session</h5> </Col>
+                        <Col> <h5 className='mt-4'>Consecutive Session</h5> </Col>
+                    </Row>
+                    <Row>
+                        <Col><p style={{fontSize:'18px'}}>{this.state.S_session.split('\n').map( (it, i) => <div key={'x'+i}>{it}</div>)}</p></Col>
+                        <Col><p style={{fontSize:'18px'}}>{this.state.consSession.split('\n').map( (it, i) => <div key={'x'+i}>{it}</div>)}</p></Col>
+                    </Row>
+                </Container>
 
-                <input  className="form-control mt-1" style={{width:'50%', height:'10em'}} value={this.state.S_session}>
-                    {/*{this.state.S_session.split('\n').map( (it, i) =>*/}
-                    {/*    <div key={'x'+i}>{it}</div>*/}
-                    {/*)}*/}
-                </input>
+
 
                 <form className="form-inline">
                     <h5 className='mt-3'>Room</h5>
@@ -227,11 +328,11 @@ class SessionRoomAll extends Component{
                             >
                                 <option selected style={{fontSize: "15px"}}>Choose room...</option>
                                 {this.state.roomData.map(room =>{
-                                    if(room.room !== room.room) {
+
                                         return (
                                             <option value={room.room}>{room.room}</option>
                                         )
-                                    }
+
                                 })}
 
                             </select>

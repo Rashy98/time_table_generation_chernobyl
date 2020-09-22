@@ -12,6 +12,7 @@ class TagOnly extends Component{
             tags:[],
             roomData:[],
             selectedTag:"",
+            roomsInDB:[],
 
         }
 
@@ -64,6 +65,15 @@ class TagOnly extends Component{
         this.setState({
             selectedTag:e.target.value
         })
+
+        this.state.tags.map(tag =>{
+            if(tag.tag === e.target.value){
+                this.setState({
+                    roomsInDB: tag.rooms
+                })
+
+            }
+        })
     }
 
     componentDidMount() {
@@ -93,31 +103,50 @@ class TagOnly extends Component{
 
     }
 
+
+    Validation(){
+        let valid = true;
+
+        this.state.roomsInDB.map(room =>{
+            this.state.rooms.map(r =>{
+                if(room === r.room){
+                    console.log(room,r);
+                    valid = false;
+                }
+            })
+        })
+
+        return valid;
+    }
     AddRoomAllocation(e) {
         e.preventDefault();
 
 
-        let tagId =  this.state.tags.map(tag=>{
-                        if(tag.tag === this.state.selectedTag){
-                        return tag._id
-                        }
-                })
+        this.Validation();
+        if( this.Validation()){
+            let tagId = this.state.tags.map(tag => {
+                if (tag.tag === this.state.selectedTag) {
+                    return tag._id
+                }
+            })
             const rooms = {
-                _id:tagId,
-                rooms:  this.GetID()
+                _id: tagId,
+                rooms: this.GetID()
             }
             console.log(rooms);
-                 axios.post("/tag/pushRooms/",rooms)
-                    .then(res => console.log(res.data));
+            axios.post("/tag/pushRooms/", rooms)
+                .then(res => console.log(res.data));
 
             alert('Rooms Allocated!');
             this.setState({
-                selectedBuilding: '',
-                room: '',
-                capacity: 0,
-                type: ''
+                rooms: [{room: ""}],
+                selectedTag: "",
             })
-
+        }
+        else
+        {
+            alert('Some or all rooms already added!');
+        }
     }
 
     render() {
@@ -160,23 +189,23 @@ class TagOnly extends Component{
                         >+
                 </button>
             </form>
-                {this.state.rooms.map((room, idx) => (
+                {this.state.rooms.map((roo, idx) => (
 
                     <div className="room">
-
+                        {console.log(roo.room)}
                         <form className="form-inline">
 
                         <select className="form-control rooms w-25" id="room"
                                 style={{width: "50%"}}
                                 placeholder={`Room #${idx+1}`}
-                                value={room.room}
+                                value={roo.room}
                                 onChange={this.handleRoomsNameChange(idx)}
                         >
                             <option selected style={{fontSize: "15px"}}>Choose room...</option>
                             {this.state.roomData.map(room =>{
-                                return(
-                                    <option value={room.room}>{room.room}</option>
-                                )
+                                    return (
+                                        <option value={room.room}>{room.room}</option>
+                                    )
                             })}
 
                         </select>
